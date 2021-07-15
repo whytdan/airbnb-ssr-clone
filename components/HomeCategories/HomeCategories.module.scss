@@ -1,0 +1,38 @@
+.container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin: 0 auto;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  list-style: none;
+}
+
+.card {
+  div {
+    &:first-child {
+      margin: 0 5px !important;
+    }
+  }
+
+  img {
+    height: auto;
+    border-radius: 10px;
+  }
+
+  p {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.slider {
+  width: 100%;
+}
