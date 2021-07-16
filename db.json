@@ -24,5 +24,374 @@
       "title": "Можно с животными",
       "image": "https://a0.muscache.com/im/pictures/10a638e1-6aff-4313-8033-1275cec83987.jpg?im_w=720"
     }
+  ],
+  "homes": [
+    {
+      "id": 1,
+      "title": "Yurt camp near to capital city Bishkek.",
+      "secondaryTitle": "Юрта, Tatyr",
+      "location": "Tatyr, Chuy Province, Киргизия",
+      "capacity": "4 гостя · 1 спальня · 4 кровати · 1 ванная",
+      "price": 1261,
+      "images": [
+        "https://a0.muscache.com/im/pictures/6c5351a6-d66e-4bc9-8557-e9db5a036248.jpg?im_w=1200"
+      ],
+      "categories": ["housing-at-nature", "unique-housing"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 2,
+      "title": "Семейный коттедж в ЦО Париж 2",
+      "secondaryTitle": "Хижина целиком, Chok Tal",
+      "location": "Chok Tal, Иссык-Кульская область, Киргизия",
+      "capacity": "6 гостей · 2 спальни · 4 кровати · 1,5 ванной",
+      "price": 5935,
+      "images": [
+        "https://a0.muscache.com/im/pictures/e426d340-3534-4776-b588-2a202559692c.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/a8e465be-af11-4541-90e6-13e5d3564d4e.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/a2f6aad4-b15d-4c60-b470-2122a1fa3ea8.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/4139dd82-f467-400f-bd02-3ed6b2c4fb0e.jpg?im_w=720"
+      ],
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 3,
+      "title": "Family club \"Royal appricot\"",
+      "secondaryTitle": "Шале целиком, Issyk-Kul Region",
+      "location": "Иссык-Кульская область, Киргизия",
+      "capacity": "6 гостей · 3 спальни · 4 кровати · 2,5 ванной",
+      "price": 24111,
+      "images": [
+        "https://a0.muscache.com/im/pictures/6446d6dc-4f70-48fd-b8e0-c18fcc8469fd.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/5b536be9-f3d3-46ce-8020-9d24b8b65a69.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/b25aceb4-498a-47d2-bde1-97d59d0d7e60.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/18e81d7a-a603-4908-b4c8-418fd90475c1.jpg?im_w=1200"
+      ],
+      "categories": ["housing-at-nature"],
+      "instanceBooking": true,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 4,
+      "title": "\"Hyde Park\" Country Complex",
+      "secondaryTitle": "Отдельная комната, Issyk-Ata",
+      "location": "Ysyk-Ata, Chuy Province, Киргизия",
+      "capacity": "2 гостя · 1 спальня · 2 кровати · 1 ванная",
+      "price": 5193,
+      "images": [
+        "https://a0.muscache.com/im/pictures/44b056b8-fa2d-4433-b71c-3954612343fb.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/043ba85f-d357-4bed-a3c3-95f18cde0299.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/cca8852f-c99b-4ce4-9eba-dd22dc859318.jpg?im_w=720"
+      ],
+      "categories": ["housing-at-nature"],
+      "instanceBooking": true,
+      "housingType": ["SR", "HR"]
+    },
+    {
+      "id": 5,
+      "title": "Yurt Camp Beltam (Seaside)",
+      "secondaryTitle": "Юрта, Issyk-Kul Region",
+      "location": "Иссык-Кульская область, Киргизия",
+      "capacity": "4 гостя · 1 спальня · 4 кровати · 0 ванных",
+      "images": [
+        "https://a0.muscache.com/im/pictures/293464e2-931f-48d4-b098-c47e087c1d25.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/87d184f3-7af9-4e5f-83de-267c8289f6a3.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/83b368e1-21a3-45e9-b518-43dd896414ca.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/a21da9dd-eace-47f8-b029-e6fb2f027238.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/b742bc16-529a-468a-86d2-15f206b753ff.jpg?im_w=720"
+      ],
+      "price": 1039,
+      "categories": ["housing-at-nature", "unique-housing"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 6,
+      "title": "Tower in mountain village Issyk-Kul",
+      "secondaryTitle": "Дом на дереве, Grigorievka",
+      "location": "Grigorievka, Иссык-Кульская область, Киргизия",
+      "capacity": "3 гостя · 2 спальни · 3 кровати · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/91144089/3c908ebd_original.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/91143823/56598178_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/91143860/68ae8f7a_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/91151919/b065fc27_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/91151729/9f0a3b6a_original.jpg?im_w=1200"
+      ],
+      "price": 3516,
+      "categories": ["housing-at-nature", "unique-housing"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 7,
+      "title": "Delightful Yurt just outside Bishkek",
+      "secondaryTitle": "Юрта, Tatyr",
+      "location": "Tatyr, Chuy Province, Киргизия",
+      "capacity": "4 гостя · 1 спальня · 1 кровать · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/e9ac778b-6882-4834-874d-5a668ec648fd.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/e9ac778b-6882-4834-874d-5a668ec648fd.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/e9ac778b-6882-4834-874d-5a668ec648fd.jpg?im_w=1200"
+      ],
+      "price": 2226,
+      "categories": ["housing-at-nature", "unique-housing"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 8,
+      "title": "Cottage in Kyrgyz mountain village",
+      "secondaryTitle": "Отдельная комната, Grigorievka",
+      "location": "Grigorievka, Ysyk Kol Province, Киргизия",
+      "capacity": "2 гостя · 1 спальня · 1 кровать · Общий туалет с раковиной",
+      "images": [
+        "https://a0.muscache.com/im/pictures/82594839/a31d97f2_original.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/82195176/252bc00d_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/82199456/2eb3ec44_original.jpg?im_w=720"
+      ],
+      "price": 2515,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["SR", "HR"]
+    },
+    {
+      "id": 9,
+      "title": "Tashtanbay Ata Guest House at Skazka canyon (1km)",
+      "secondaryTitle": "Жилье на ферме, KG",
+      "location": "Киргизия",
+      "capacity": "10 гостей · 4 спальни · 13 кроватей · 1,5 ванной",
+      "images": [
+        "https://a0.muscache.com/im/pictures/miso/Hosting-29912359/original/9a641fc6-abb7-4935-919a-23e5d1d8ba80.jpeg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/40c8063f-0c19-4997-904c-1dd5a10f52b7.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/72df7a4c-ce9b-4d93-a6b8-e8addd1add3f.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/a92a4d4b-e0ad-40ac-9606-7d3dd0c6f1df.jpg?im_w=720"
+      ],
+      "price": 890,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH"]
+    },
+    {
+      "id": 10,
+      "title": "Yurt Camp\"Baiysh\",Southern Shore of Song-Kol Lake",
+      "secondaryTitle": "Отдельная комната, Naryn Province",
+      "location": "Naryn Province, Киргизия",
+      "capacity": "16 гостей · 2 кровати · 2 общие ванные",
+      "images": [
+        "https://a0.muscache.com/im/pictures/f190ad56-5aaa-4895-a26a-b097712a049b.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/23c2ee14-b5f0-4735-8012-3f58ca3c9dd9.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/c108f384-e7d9-42c2-95fa-e356d0335c0d.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/89ee8be6-e46d-4891-be2a-839aa4176214.jpg?im_w=720"
+      ],
+      "price": 1855,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["SR"]
+    },
+    {
+      "id": 11,
+      "title": "Yurts in Luch",
+      "secondaryTitle": "Юрта, Бишкек",
+      "location": "Бишкек, Chuy Province, Киргизия",
+      "capacity": "6 гостей · 4 спальни · 5 кроватей · 2 ванные",
+      "images": [
+        "https://a0.muscache.com/im/pictures/48466f34-5fa4-44f6-9f3c-f1fd67ccabb8.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/ce634723-1125-4e99-95ca-2a7677147809.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/0d4a6b47-52c5-463d-89e9-42e4c6e102e2.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/2ebe17c7-a983-48f0-99d6-be343f8a7614.jpg?im_w=720"
+      ],
+      "price": 7419,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 12,
+      "title": "Hippohae",
+      "secondaryTitle": "Типи, Przhevalsk",
+      "location": "Przhevalsk, Иссык-Кульская область, Киргизия",
+      "capacity": "4 гостя · 2 спальни · 4 кровати · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/da5d4af6-6836-435d-a1cb-455d411a0705.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/5761a6f4-a2ad-4962-858a-09696d72542a.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/ab118881-53f5-4b2c-b172-2fb9476a23b1.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/68aef070-e262-48c3-afcc-a472c8422ba1.jpg?im_w=720"
+      ],
+      "price": 742,
+      "categories": ["housing-at-nature", "unique-housing"],
+      "instanceBooking": true,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 13,
+      "title": "Гостевая юрта - Nomad Yurt! Приглашаем в гости!",
+      "secondaryTitle": "Юрта, Бишкек",
+      "location": "Бишкек, Chuy Province, Киргизия",
+      "capacity": "5 гостей · 1 спальня · 0 кроватей · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/7e9976a5-9c5d-4b1a-b4ba-25a94ab5d7c9.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/87d3ac4f-8fd2-4531-9be5-a03659e6f08d.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/f2a7d875-2014-4a9a-91a0-00ded1b02a1f.jpg?im_w=720"
+      ],
+      "price": 742,
+      "categories": ["housing-at-nature", "unique-housing"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 14,
+      "title": "Уютный деревянный сруб в ЦО Радуга, Иссык-Куль.",
+      "secondaryTitle": "Шале целиком, Kurskoe",
+      "location": "Kurskoe, Иссык-Кульская область, Киргизия",
+      "capacity": "8 гостей · 3 спальни · 5 кроватей · 2 ванные",
+      "images": [
+        "https://a0.muscache.com/im/pictures/963dadf7-822f-4c78-bd3f-3d3faf3a9c24.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/ada3adf3-3457-42e8-9d47-0ed7f32e895d.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/bf71ac5f-ae2d-4128-968f-c09c8114050c.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/776c6928-61d4-4c90-87a9-44f72329c094.jpg?im_w=720"
+      ],
+      "price": 25000,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 15,
+      "title": "Амбар. An unforgettable night in the hayloft.",
+      "secondaryTitle": "Амбар, Tash-Dobo",
+      "location": "Tash-Dobo, Chuy Province, Киргизия",
+      "capacity": "8 гостей · 2 спальни · 8 кроватей · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/7c2611f1-0c92-40d8-8d41-6da0d6ae5530.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/91c2e77f-1ab5-49ae-a4f3-b432e949124d.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/a3000f92-b358-4f0d-842d-a4bc98a06902.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/cd636846-15a5-49ee-a34e-848115dcc1d2.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/0db2b31e-de44-43d7-ad6f-cfb995a54a0d.jpg?im_w=720"
+      ],
+      "price": 2095,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 16,
+      "title": "Barskoon guest house (Барскоон гостевой дом)",
+      "secondaryTitle": "Юрта, Barskoon",
+      "location": "Barskoon, Иссык-Кульская область, Киргизия",
+      "capacity": "5 гостей · 5 кроватей · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/890ef7a6-024b-4ae0-9206-bcd0666110d4.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/8ea2eaba-a38b-4444-a4c4-a98b6df64c28.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/447a8745-a2a5-4d6f-ae32-92b09ba8db0f.jpg?im_w=720"
+      ],
+      "price": 2374,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH"]
+    },
+    {
+      "id": 17,
+      "title": "Holiday in Yurt Camp bu Issik-Kyl",
+      "secondaryTitle": "Юрта, Tong",
+      "location": "Tong, Ysyk Kol Province, Киргизия",
+      "capacity": "2 гостя · 1 спальня · 2 кровати · Туалет с раковиной",
+      "images": [
+        "https://a0.muscache.com/im/pictures/2ea000d3-1890-416e-8157-672dcbc6100e.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/111638356/b50959a3_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/111638459/1ffbe4d2_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/111638618/ff55c69d_original.jpg?im_w=720"
+      ],
+      "price": 964,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH"]
+    },
+    {
+      "id": 18,
+      "title": "Holiday in Yurt Camp ALMALUU",
+      "secondaryTitle": "Юрта, Tong",
+      "location": "Tong, Ysyk Kol Province, Киргизия",
+      "capacity": "4 гостя · 6 спален · 4 кровати · Туалет с раковиной",
+      "images": [
+        "https://a0.muscache.com/im/pictures/df16c3e7-55e6-4525-95f3-b68713bde7b2.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/111605368/4ba66084_original.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/bd5fcc35-cbb7-44c4-963d-ef3ec299cf10.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/dff68d35-070f-4779-841a-533284c4d4a9.jpg?im_w=720"
+      ],
+      "price": 964,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 19,
+      "title": "Deluxe Royal Beach",
+      "secondaryTitle": "Хижина целиком, Chok Tal",
+      "location": "Chok Tal, Ysyk Kol Province, Киргизия",
+      "capacity": "4 гостя · 2 спальни · 2 кровати · 1 ванная",
+      "images": [
+        "https://a0.muscache.com/im/pictures/f315df8b-9b33-4ff4-8572-02fcfc9a8494.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/39d35a8f-742b-4737-9005-c08a57786bae.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/e6672614-e1a8-4cf5-90be-3ff8f06cb97c.jpg?im_w=720"
+      ],
+      "price": 7419,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["EH", "HR"]
+    },
+    {
+      "id": 20,
+      "title": "Nomad's Dream yurt camp in Son Kul",
+      "secondaryTitle": "Место в команте, Naryn",
+      "location": "Naryn Region, Киргизия",
+      "capacity": "16 гостей · 1 спальня · 60 кроватей · 5 общих ванных комнат",
+      "images": [
+        "https://a0.muscache.com/im/pictures/a5794a55-a2ff-4d80-8590-4345de376b6c.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/98f57270-077c-40ec-9801-36cc290135ad.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/308925a8-79f4-48ad-bdac-6202c351140f.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/23e4c2c4-fd56-4da5-b6f9-f80437ae2756.jpg?im_w=720"
+      ],
+      "price": 2597,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["SR", "SHR"]
+    },
+    {
+      "id": 21,
+      "title": "Jeti Oguz Yurt Camp (Flower Valley)",
+      "secondaryTitle": "Место в команте, Przhevalsk",
+      "location": "Przhevalsk, Иссык-Кульская область, Киргизия",
+      "capacity": "15 гостей · 1 спальня · 5 кроватей",
+      "images": [
+        "https://a0.muscache.com/im/pictures/miso/Hosting-40684240/original/f35dbd65-39a4-4a4c-807c-b3eb2dfc32cf.jpeg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/ca51945c-140c-47cb-9d04-b2a914415b3c.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-40684240/original/4fd45661-c218-4206-bc2d-8fefdc154766.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-40684240/original/2abb53a4-64bf-4a7b-bafb-40789e3ccf67.jpeg?im_w=720"
+      ],
+      "price": 2226,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["SHR"]
+    },
+    {
+      "id": 22,
+      "title": "Aksuu Backcountry Skiing Yurt Lodge",
+      "secondaryTitle": "Место в команте, Karakol",
+      "location": "Karakol, Ysyk Kol Province, Киргизия",
+      "capacity": "16 гостей · 1 спальня · 16 кроватей · 0 общих ванных",
+      "images": [
+        "https://a0.muscache.com/im/pictures/3ebaf975-64b3-4655-9ee1-ef3914ccaa76.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/db1a0e2a-8be5-40aa-b36f-6e8aa19a74ee.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/701b0e88-3aaf-40d1-9c1a-71b3e9b864f8.jpg?im_w=720"
+      ],
+      "price": 2226,
+      "categories": ["housing-at-nature"],
+      "instanceBooking": false,
+      "housingType": ["SHR"]
+    }
   ]
 }

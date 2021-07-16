@@ -2,6 +2,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import React from 'react';
 import useSWR from 'swr';
+import Link from 'next/link';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -33,13 +34,17 @@ export default function HomeCategories() {
           <Slider {...sliderSettings} className={classes.slider}>
             {data.map((category) => (
               <li className={classes.card} key={category.id}>
-                <Image
-                  src={category.image}
-                  width={386}
-                  height={386}
-                  alt={category.title}
-                />
-                <p>{category.title}</p>
+                <Link href={`/categories/${category.slug}`}>
+                  <a>
+                    <Image
+                      src={category.image}
+                      width={386}
+                      height={386}
+                      alt={category.title}
+                    />
+                    <p>{category.title}</p>
+                  </a>
+                </Link>
               </li>
             ))}
           </Slider>
