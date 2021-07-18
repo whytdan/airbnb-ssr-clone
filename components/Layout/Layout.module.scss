@@ -5,6 +5,7 @@
   position: fixed;
   background-color: #fff;
   width: 100%;
+  z-index: 99;
 
   .lgNavLogo {
     width: 102px;
@@ -30,5 +31,5 @@
 }
 
 .underNav {
-  height: 50px;
+  height: 60px;
 }

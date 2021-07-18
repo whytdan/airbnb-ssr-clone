@@ -9,6 +9,8 @@
 		"import/prefer-default-export": "off",
 		"react/jsx-props-no-spreading": "off",
 		"react/jsx-filename-extension": "off",
-		"operator-linebreak":"off"
+		"operator-linebreak":"off",
+		"react/jsx-one-expression-per-line": "off",
+		"react/no-array-index-key": "off"
 	}
 }

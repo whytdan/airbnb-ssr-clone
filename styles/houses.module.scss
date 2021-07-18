@@ -1,0 +1,31 @@
+.contentWrapper {
+  display: flex;
+}
+
+.headingWrapper {
+  h1 {
+    font-size: 28px;
+  }
+  p {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+    padding-bottom: 8px;
+  }
+}
+
+.leftContent {
+  padding-top: 50px;
+  width: 100%;
+
+  @media (min-width: 1128px) {
+    width: 50%;
+    max-width: 792px;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
