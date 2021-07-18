@@ -7,7 +7,7 @@ import HomeList from '../../components/HomeList/HomeList';
 import Layout from '../../components/Layout';
 import classes from '../../styles/houses.module.scss';
 import utilsClasses from '../../styles/utils.module.scss';
-import useFetchCategoryHomes from '../../hooks/useFetch';
+import useFetchCategoryHomes from '../../hooks/useFetchCategoryHomes';
 
 export async function getServerSideProps({ params }) {
   const homes = await fetchHomesByCategory(params.slug);
