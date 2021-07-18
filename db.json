@@ -38,7 +38,8 @@
       ],
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 2,
@@ -55,7 +56,8 @@
       ],
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 3,
@@ -72,7 +74,8 @@
       ],
       "categories": ["housing-at-nature"],
       "instanceBooking": true,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 4,
@@ -88,7 +91,8 @@
       ],
       "categories": ["housing-at-nature"],
       "instanceBooking": true,
-      "housingType": ["SR", "HR"]
+      "housingType": ["SR", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 5,
@@ -106,7 +110,8 @@
       "price": 1039,
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 6,
@@ -124,7 +129,8 @@
       "price": 3516,
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 7,
@@ -140,7 +146,8 @@
       "price": 2226,
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 8,
@@ -156,7 +163,8 @@
       "price": 2515,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["SR", "HR"]
+      "housingType": ["SR", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 9,
@@ -173,7 +181,8 @@
       "price": 890,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH"]
+      "housingType": ["EH"],
+      "flexibleCancellation": false
     },
     {
       "id": 10,
@@ -190,7 +199,8 @@
       "price": 1855,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["SR"]
+      "housingType": ["SR"],
+      "flexibleCancellation": true
     },
     {
       "id": 11,
@@ -207,7 +217,8 @@
       "price": 7419,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 12,
@@ -224,7 +235,8 @@
       "price": 742,
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": true,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 13,
@@ -240,7 +252,8 @@
       "price": 742,
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 14,
@@ -257,7 +270,8 @@
       "price": 25000,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 15,
@@ -275,7 +289,8 @@
       "price": 2095,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": false
     },
     {
       "id": 16,
@@ -291,7 +306,8 @@
       "price": 2374,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH"]
+      "housingType": ["EH"],
+      "flexibleCancellation": true
     },
     {
       "id": 17,
@@ -308,7 +324,8 @@
       "price": 964,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH"]
+      "housingType": ["EH"],
+      "flexibleCancellation": false
     },
     {
       "id": 18,
@@ -325,7 +342,8 @@
       "price": 964,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 19,
@@ -341,7 +359,8 @@
       "price": 7419,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["EH", "HR"]
+      "housingType": ["EH", "HR"],
+      "flexibleCancellation": true
     },
     {
       "id": 20,
@@ -375,7 +394,8 @@
       "price": 2226,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["SHR"]
+      "housingType": ["SHR"],
+      "flexibleCancellation": true
     },
     {
       "id": 22,
@@ -391,7 +411,8 @@
       "price": 2226,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["SHR"]
+      "housingType": ["SHR"],
+      "flexibleCancellation": false
     }
   ]
 }

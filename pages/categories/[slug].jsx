@@ -8,6 +8,7 @@ import Layout from '../../components/Layout';
 import classes from '../../styles/houses.module.scss';
 import utilsClasses from '../../styles/utils.module.scss';
 import useFetchCategoryHomes from '../../hooks/useFetchCategoryHomes';
+import FiltrationArea from '../../components/FiltrationArea/FiltrationArea';
 
 export async function getServerSideProps({ params }) {
   const homes = await fetchHomesByCategory(params.slug);
@@ -63,6 +64,9 @@ export default function CategoryHomes({
             <p>{homes.length} вариант жилья</p>
             <h1>{categoryTitle}</h1>
           </section>
+
+          <FiltrationArea />
+
           <HomeList
             homes={homes}
             loading={loading}

@@ -1,0 +1,141 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  position: relative;
+
+  @media (max-width: 744px) {
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+}
+
+.filter {
+  border: 1px solid #000;
+  padding: 8px 16px;
+  border-radius: 30px;
+  border-color: #b0b0b0;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #000;
+  }
+  @media (max-width: 744px) {
+    margin-right: 7px;
+    margin-bottom: 7px;
+  }
+}
+
+.filterArea {
+  position: absolute;
+  width: 360px;
+  height: 175px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(118, 118, 118, 0.28);
+  box-shadow: rgb(0 0 0 / 15%) 0px 10px 37px;
+  background-color: #fff;
+  z-index: 99;
+
+  @media (max-width: 744px) {
+    width: 90%;
+  }
+}
+
+.filterControl {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(118, 118, 118, 0.28);
+}
+
+.clearBtn {
+  border: none;
+  background: none;
+  position: absolute !important;
+  height: 40px !important;
+  bottom: 20px !important;
+  font-size: 12px !important;
+}
+
+.flexibleCancellation {
+  top: 65px;
+  left: 0;
+  right: auto;
+
+  p {
+    color: rgb(113, 113, 113) !important;
+    font-size: 14px;
+    line-height: 18px;
+    max-width: 250px;
+  }
+}
+
+.instanceBooking {
+  top: 65px;
+  right: 0;
+  left: auto;
+
+  @media (max-width: 800px) {
+    left: 0;
+    right: auto;
+  }
+
+  p {
+    color: rgb(113, 113, 113) !important;
+    font-size: 14px;
+    line-height: 18px;
+    max-width: 250px;
+  }
+}
+
+.housingType {
+  height: auto;
+  top: 65px;
+  left: 235px;
+  padding: 20px 20px 20px 10px;
+  height: 410px;
+
+  @media (max-width: 800px) {
+    left: 0;
+  }
+
+  ul {
+    border-bottom: 1px solid rgba(118, 118, 118, 0.28);
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-weight: 300;
+
+      .label {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+.price {
+  top: 65px;
+  left: 370px;
+  height: 220px;
+
+  @media (max-width: 800px) {
+    left: 0;
+  }
+
+  .priceControl {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(118, 118, 118, 0.28);
+  }
+}
