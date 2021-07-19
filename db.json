@@ -39,7 +39,8 @@
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.67175, 74.6499]
     },
     {
       "id": 2,
@@ -57,7 +58,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.58443, 76.75448]
     },
     {
       "id": 3,
@@ -75,7 +77,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": true,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.1581, 77.5091]
     },
     {
       "id": 4,
@@ -92,7 +95,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": true,
       "housingType": ["SR", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.78148, 74.66566]
     },
     {
       "id": 5,
@@ -111,7 +115,8 @@
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.17101, 77.04248]
     },
     {
       "id": 6,
@@ -130,7 +135,8 @@
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.71528, 77.49013]
     },
     {
       "id": 7,
@@ -147,7 +153,8 @@
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.67873, 74.64948]
     },
     {
       "id": 8,
@@ -164,7 +171,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["SR", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.71412, 77.49211]
     },
     {
       "id": 9,
@@ -182,7 +190,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.1564, 77.354]
     },
     {
       "id": 10,
@@ -200,7 +209,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["SR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [41.2939, 75.29386]
     },
     {
       "id": 11,
@@ -218,7 +228,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.85335, 74.61019]
     },
     {
       "id": 12,
@@ -236,7 +247,8 @@
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": true,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.57544, 78.1454]
     },
     {
       "id": 13,
@@ -253,7 +265,8 @@
       "categories": ["housing-at-nature", "unique-housing"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.86287, 74.69849]
     },
     {
       "id": 14,
@@ -271,7 +284,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.60171, 76.95387]
     },
     {
       "id": 15,
@@ -290,7 +304,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.72464, 74.57346]
     },
     {
       "id": 16,
@@ -307,7 +322,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.15657, 77.60184]
     },
     {
       "id": 17,
@@ -325,7 +341,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.17057, 76.99802]
     },
     {
       "id": 18,
@@ -343,7 +360,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.16079, 77.04305]
     },
     {
       "id": 19,
@@ -360,7 +378,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["EH", "HR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.6181, 76.65155]
     },
     {
       "id": 20,
@@ -378,7 +397,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["SR", "SHR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [41.77064, 75.15405]
     },
     {
       "id": 21,
@@ -396,7 +416,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["SHR"],
-      "flexibleCancellation": true
+      "flexibleCancellation": true,
+      "position": [42.29027, 78.2845]
     },
     {
       "id": 22,
@@ -413,7 +434,8 @@
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
       "housingType": ["SHR"],
-      "flexibleCancellation": false
+      "flexibleCancellation": false,
+      "position": [42.42159, 78.68404]
     }
   ]
 }

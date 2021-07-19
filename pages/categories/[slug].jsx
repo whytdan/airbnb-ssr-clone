@@ -10,6 +10,7 @@ import utilsClasses from '../../styles/utils.module.scss';
 import FiltrationArea from '../../components/FiltrationArea/FiltrationArea';
 import { useContext } from 'react';
 import { homesContext } from '../../contexts/HomesContextProvider';
+import HomesMap from '../../components/HomesMap/HomesMap';
 
 export async function getServerSideProps({ params }) {
   const homes = await fetchHomesByCategory(params.slug);
@@ -76,6 +77,19 @@ export default function CategoryHomes({
   return (
     <Layout>
       <Head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""
+        />
+
+        <script
+          src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""
+        ></script>
+
         <title>Везде - Жилье - Airbnb</title>
       </Head>
       <section
@@ -89,13 +103,16 @@ export default function CategoryHomes({
           </section>
 
           <FiltrationArea setPageNumber={setPageNumber} />
-
           <HomeList
             homes={homes}
             loading={loading}
             error={error}
             lastHomeElementRef={lastHomeElementRef}
           />
+        </div>
+
+        <div className={classes.rightContent}>
+          <HomesMap homes={homes} />
         </div>
       </section>
     </Layout>
