@@ -1,17 +1,17 @@
 import React, { useState, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import Checkbox from '@material-ui/core/Checkbox';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import classes from './FiltrationArea.module.scss';
-import { Button } from '@material-ui/core';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { filterParams, housingTypeOptions } from '../../constants/filtrations';
+import { filterParams } from './constants';
+import { useContext } from 'react';
+import { homesContext } from '../../contexts/HomesContextProvider';
+import FlexibleCancellationPopup from './FlexibleCancellationPopup';
+import HousingTypePopup from './HousingTypePopup';
+import FilterButton from './FilterButton';
+import { isHousingTypeSetToDefault } from './helpers';
+import PriceRangePopup from './PriceRangePopup';
+import InstanceBookingPopup from './InstanceBookingPopup';
 
-function FiltrationArea() {
+function FiltrationArea({ setPageNumber }) {
   const [flexibleCancellation, setFlexibleCancellation] = useState(false);
   const [housingType, setHousingType] = useState({
     EH: false,
@@ -23,18 +23,27 @@ function FiltrationArea() {
   const [maxPrice, setMaxPrice] = useState(50000);
   const [instanceBooking, setInstanceBooking] = useState(false);
 
-  const [filterPopupsState, setfilterPopupsState] = useState({
+  const [filtersPopupState, setFiltersPopupState] = useState({
     flexibleCancellation: false,
     housingType: false,
     price: false,
     instanceBooking: false,
   });
 
+  const [filtersTouched, setFiltersTouched] = useState({
+    flexibleCancellation: false,
+    housingType: false,
+    price: false,
+    instanceBooking: false,
+  });
+
+  const { setHomesFilterParams } = useContext(homesContext);
+
   const filterPopupRef = useRef();
 
   const hideFilterPopups = () =>
-    setfilterPopupsState({
-      ...Object.entries(filterPopupsState).map(([key]) => ({
+    setFiltersPopupState({
+      ...Object.entries(filtersPopupState).map(([key]) => ({
         [key]: false,
       })),
     });
@@ -43,174 +52,148 @@ function FiltrationArea() {
   useOutsideClick(filterPopupRef, hideFilterPopups);
 
   const handleFilterPopupOpen = (filterName) => {
-    setfilterPopupsState({
-      ...filterPopupsState,
+    setFiltersPopupState({
+      ...filtersPopupState,
       [filterName]: true,
     });
   };
 
+  const handleFlexibleCancellationFilterChange = async () => {
+    const newValue = !flexibleCancellation;
+    setFlexibleCancellation(newValue);
+    setFiltersTouched({
+      ...filtersTouched,
+      flexibleCancellation: !filtersTouched.flexibleCancellation,
+    });
+    setHomesFilterParams({ flexibleCancellation: newValue ? newValue : '' });
+    setPageNumber(1);
+  };
+
   const handleHousingTypeFilterChange = (e) => {
-    setHousingType({
+    const newState = {
       ...housingType,
       [e.target.name]: !housingType[e.target.name],
+    };
+    setHousingType(newState);
+    if (isHousingTypeSetToDefault(newState)) {
+      setFiltersTouched({
+        ...filtersTouched,
+        housingType: true,
+      });
+    } else {
+      setFiltersTouched({
+        ...filtersTouched,
+        housingType: false,
+      });
+    }
+    setHomesFilterParams({ housingType: newState });
+    setPageNumber(1);
+  };
+
+  const resetHousingTypeFilter = () => {
+    setHousingType({
+      EH: false,
+      SR: false,
+      HR: false,
+      SHR: false,
     });
+    setFiltersTouched({
+      ...filtersTouched,
+      housingType: false,
+    });
+    setHomesFilterParams({ housingType: '' });
+    setPageNumber(1);
+  };
+
+  const handleMaxPriceChange = (e) => {
+    const newValue = +e.target.value;
+    setMaxPrice(newValue);
+    setFiltersTouched({
+      ...filtersTouched,
+      price: !(newValue === 50000 && minPrice === 0),
+    });
+    setHomesFilterParams({ maxPrice: newValue });
+    setPageNumber(1);
+  };
+
+  const handleMinPriceChange = (e) => {
+    const newValue = +e.target.value;
+    setMinPrice(newValue);
+    setFiltersTouched({
+      ...filtersTouched,
+      price: !(maxPrice === 50000 && newValue === 0),
+    });
+    setHomesFilterParams({ minPrice: newValue });
+    setPageNumber(1);
+  };
+
+  const resetPriceRangeFilter = () => {
+    setMinPrice(0);
+    setMaxPrice(50000);
+    setFiltersTouched({
+      ...filtersTouched,
+      price: false,
+    });
+    setHomesFilterParams({ minPrice: 0, maxPrice: 50000 });
+    setPageNumber(1);
+  };
+
+  const handleInstanceBooikngFilterChange = async () => {
+    const newValue = !instanceBooking;
+    setInstanceBooking(newValue);
+    setFiltersTouched({
+      ...filtersTouched,
+      instanceBooking: !filtersTouched.instanceBooking,
+    });
+    setHomesFilterParams({ instanceBooking: newValue ? newValue : '' });
+    setPageNumber(1);
   };
 
   return (
     <div className={[classes.wrapper].join(' ')}>
       {filterParams.map((param) => (
-        <div
+        <FilterButton
           key={param.value}
-          className={classes.filter}
-          onClick={() => handleFilterPopupOpen(param.value)}
-        >
-          {param.label}
-        </div>
+          label={param.label}
+          handleFilterPopupOpen={() => handleFilterPopupOpen(param.value)}
+          isActive={filtersTouched[param.value]}
+        />
       ))}
 
-      {filterPopupsState.flexibleCancellation && (
-        <div
+      {filtersPopupState.flexibleCancellation && (
+        <FlexibleCancellationPopup
+          value={flexibleCancellation}
+          handleChange={handleFlexibleCancellationFilterChange}
           ref={filterPopupRef}
-          className={[classes.filterArea, classes.flexibleCancellation].join(
-            ' '
-          )}
-        >
-          <div className={classes.filterControl}>
-            <p>Показывать только жилье с гибкими правилами отмены</p>
-            <Switch
-              onChange={() => setFlexibleCancellation(!flexibleCancellation)}
-              checked={flexibleCancellation}
-              color="secondary"
-            />
-          </div>
-          <Button
-            onClick={() => setFlexibleCancellation(false)}
-            disabled={!flexibleCancellation}
-            className={classes.clearBtn}
-          >
-            Очистить
-          </Button>
-        </div>
+        />
       )}
 
-      {filterPopupsState.housingType && (
-        <div
+      {filtersPopupState.housingType && (
+        <HousingTypePopup
+          housingType={housingType}
+          handleChange={handleHousingTypeFilterChange}
+          reset={resetHousingTypeFilter}
           ref={filterPopupRef}
-          className={[classes.filterArea, classes.housingType].join(' ')}
-        >
-          <ul>
-            {housingTypeOptions.map((option, index) => (
-              <li key={index}>
-                <Checkbox
-                  name={option.value}
-                  checked={housingType[option.value]}
-                  onChange={handleHousingTypeFilterChange}
-                  size="medium"
-                  color="secondary"
-                />
-                <div>
-                  <label className={classes.label}>{option.label}</label>
-                  <p>{option.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <Button
-            onClick={() =>
-              setHousingType({
-                EH: false,
-                SR: false,
-                HR: false,
-                SHR: false,
-              })
-            }
-            disabled={!Object.values(housingType).reduce((a, v) => a + v)}
-            className={classes.clearBtn}
-          >
-            Очистить
-          </Button>
-        </div>
+        />
       )}
 
-      {filterPopupsState.price && (
-        <div
+      {filtersPopupState.price && (
+        <PriceRangePopup
+          maxPrice={maxPrice}
+          minPrice={minPrice}
+          handleMaxPriceChange={handleMaxPriceChange}
+          handleMinPriceChange={handleMinPriceChange}
+          reset={resetPriceRangeFilter}
           ref={filterPopupRef}
-          className={[classes.filterArea, classes.price].join(' ')}
-        >
-          <p>До {maxPrice}₽</p>
-          <div className={classes.priceControl}>
-            <FormControl
-              fullWidth
-              variant="outlined"
-              style={{ marginRight: 5 }}
-            >
-              <InputLabel htmlFor="outlined-min-price">мин. цена</InputLabel>
-              <OutlinedInput
-                id="outlined-min-price"
-                className={classes.priceInp}
-                variant="outlined"
-                startAdornment={
-                  <InputAdornment position="start">₽</InputAdornment>
-                }
-                labelWidth={60}
-                value={minPrice}
-                onChange={(e) => setMinPrice(+e.target.value)}
-              />
-            </FormControl>
-
-            <FormControl fullWidth variant="outlined" style={{ marginLeft: 5 }}>
-              <InputLabel htmlFor="outlined-max-price">макс. цена</InputLabel>
-              <OutlinedInput
-                id="outlined-max-price"
-                variant="outlined"
-                startAdornment={
-                  <InputAdornment position="start">₽</InputAdornment>
-                }
-                labelWidth={60}
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(+e.target.value)}
-              />
-            </FormControl>
-          </div>
-
-          <Button
-            onClick={() => {
-              setMinPrice(0);
-              setMaxPrice(50000);
-            }}
-            disabled={minPrice === 0 && maxPrice === 50000}
-            className={classes.clearBtn}
-          >
-            Очистить
-          </Button>
-        </div>
+        />
       )}
 
-      {filterPopupsState.instanceBooking && (
-        <div
+      {filtersPopupState.instanceBooking && (
+        <InstanceBookingPopup
+          value={instanceBooking}
+          handleChange={handleInstanceBooikngFilterChange}
           ref={filterPopupRef}
-          className={[classes.filterArea, classes.instanceBooking].join(' ')}
-        >
-          <div className={classes.filterControl}>
-            <p>
-              Объявления, которые можно забронировать, не дожидаясь
-              подтверждения хозяина.
-            </p>
-            <Switch
-              onChange={() => setInstanceBooking(!instanceBooking)}
-              checked={instanceBooking}
-              color="secondary"
-            />
-          </div>
-          <Button
-            onClick={() => setInstanceBooking(false)}
-            disabled={!instanceBooking}
-            className={classes.clearBtn}
-          >
-            Очистить
-          </Button>
-        </div>
+        />
       )}
     </div>
   );

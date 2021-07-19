@@ -7,8 +7,9 @@ import HomeList from '../../components/HomeList/HomeList';
 import Layout from '../../components/Layout';
 import classes from '../../styles/houses.module.scss';
 import utilsClasses from '../../styles/utils.module.scss';
-import useFetchCategoryHomes from '../../hooks/useFetchCategoryHomes';
 import FiltrationArea from '../../components/FiltrationArea/FiltrationArea';
+import { useContext } from 'react';
+import { homesContext } from '../../contexts/HomesContextProvider';
 
 export async function getServerSideProps({ params }) {
   const homes = await fetchHomesByCategory(params.slug);
@@ -30,11 +31,32 @@ export default function CategoryHomes({
     query: { slug },
   } = useRouter();
 
-  const { loading, error, homes, hasMore } = useFetchCategoryHomes(
-    slug,
-    pageNumber,
-    preloadedHomes
-  );
+  const mounted = useRef();
+
+  const {
+    loading,
+    error,
+    homes,
+    hasMore,
+    filterParams,
+    fetchHomesByCategory,
+    setPreloadedHomes,
+    clearHomes,
+  } = useContext(homesContext);
+
+  useEffect(() => {
+    if (!mounted.current) {
+      // do componentDidMount logic
+      setPreloadedHomes(preloadedHomes);
+    } else {
+      // do componentDidUpdate logic
+      fetchHomesByCategory(slug, pageNumber);
+    }
+  }, [pageNumber, filterParams]);
+
+  useEffect(() => {
+    return () => clearHomes();
+  }, []);
 
   const observer = useRef();
   const lastHomeElementRef = useCallback(
@@ -57,6 +79,7 @@ export default function CategoryHomes({
         <title>Везде - Жилье - Airbnb</title>
       </Head>
       <section
+        ref={mounted}
         className={[utilsClasses.container, classes.contentWrapper].join(' ')}
       >
         <div className={classes.leftContent}>
@@ -65,7 +88,7 @@ export default function CategoryHomes({
             <h1>{categoryTitle}</h1>
           </section>
 
-          <FiltrationArea />
+          <FiltrationArea setPageNumber={setPageNumber} />
 
           <HomeList
             homes={homes}

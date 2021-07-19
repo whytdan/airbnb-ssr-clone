@@ -377,7 +377,8 @@
       "price": 2597,
       "categories": ["housing-at-nature"],
       "instanceBooking": false,
-      "housingType": ["SR", "SHR"]
+      "housingType": ["SR", "SHR"],
+      "flexibleCancellation": true
     },
     {
       "id": 21,
