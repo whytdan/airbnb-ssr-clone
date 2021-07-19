@@ -4,12 +4,12 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 import { filterParams } from './constants';
 import { useContext } from 'react';
 import { homesContext } from '../../contexts/HomesContextProvider';
-import FlexibleCancellationPopup from './FlexibleCancellationPopup';
-import HousingTypePopup from './HousingTypePopup';
+import FlexibleCancellationPopup from './PopupFilterComponents/FlexibleCancellationPopup';
+import HousingTypePopup from './PopupFilterComponents/HousingTypePopup';
+import InstanceBookingPopup from './PopupFilterComponents/InstanceBookingPopup';
+import PriceRangePopup from './PopupFilterComponents/PriceRangePopup';
 import FilterButton from './FilterButton';
 import { isHousingTypeSetToDefault } from './helpers';
-import PriceRangePopup from './PriceRangePopup';
-import InstanceBookingPopup from './InstanceBookingPopup';
 
 function FiltrationArea({ setPageNumber }) {
   const [flexibleCancellation, setFlexibleCancellation] = useState(false);

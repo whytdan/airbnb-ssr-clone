@@ -10,7 +10,7 @@ import utilsClasses from '../../styles/utils.module.scss';
 import FiltrationArea from '../../components/FiltrationArea/FiltrationArea';
 import { useContext } from 'react';
 import { homesContext } from '../../contexts/HomesContextProvider';
-import HomesMap from '../../components/HomesMap/HomesMap';
+import HomesMap from '../../components/HomesMap/';
 
 export async function getServerSideProps({ params }) {
   const homes = await fetchHomesByCategory(params.slug);
