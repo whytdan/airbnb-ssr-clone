@@ -1,5 +1,13 @@
 import axios from 'axios';
 import React, { useReducer } from 'react';
+import {
+  CLEAR_HOMES,
+  SET_HOMES_ERROR,
+  SET_HOMES_FILTER_PARAMS,
+  SET_HOMES_HAS_MORE,
+  SET_HOMES_LOADING,
+  SET_HOMES_SUCCESS,
+} from './constants';
 
 const INIT_STATE = {
   homes: [],
@@ -18,7 +26,7 @@ const INIT_STATE = {
 
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case 'SET_HOMES_SUCCESS': {
+    case SET_HOMES_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -26,30 +34,30 @@ const reducer = (state = INIT_STATE, action) => {
         homes: [...state.homes, ...action.payload],
       };
     }
-    case 'SET_HOMES_HAS_MORE':
+    case SET_HOMES_HAS_MORE:
       return {
         ...state,
         hasMore: action.payload,
       };
-    case 'SET_HOMES_ERROR':
+    case SET_HOMES_ERROR:
       return {
         ...state,
         homes: [],
         loading: false,
         error: action.payload,
       };
-    case 'SET_HOMES_LOADING':
+    case SET_HOMES_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case 'SET_HOMES_FILTER_PARAMS':
+    case SET_HOMES_FILTER_PARAMS:
       return {
         ...state,
         homes: [],
         filterParams: action.payload,
       };
-    case 'CLEAR_HOMES':
+    case CLEAR_HOMES:
       return {
         ...INIT_STATE,
       };
@@ -64,17 +72,18 @@ const API = process.env.NEXT_PUBLIC_API_URL;
 function HomesContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  const setHomesLoading = () => dispatch({ type: 'SET_HOMES_LOADING' });
+  const setHomesLoading = () => dispatch({ type: SET_HOMES_LOADING });
 
   const setHomesError = (payload) =>
-    dispatch({ type: 'SET_HOMES_ERROR', payload });
+    dispatch({ type: SET_HOMES_ERROR, payload });
 
   const setHomesSuccess = (payload) =>
-    dispatch({ type: 'SET_HOMES_SUCCESS', payload });
+    dispatch({ type: SET_HOMES_SUCCESS, payload });
 
   const setHomesHasMore = (payload) =>
-    dispatch({ type: 'SET_HOMES_HAS_MORE', payload });
-  const clearHomes = () => dispatch({ type: 'CLEAR_HOMES' });
+    dispatch({ type: SET_HOMES_HAS_MORE, payload });
+
+  const clearHomes = () => dispatch({ type: CLEAR_HOMES });
 
   const setHomesFilterParams = (filterParam) => {
     dispatch({
