@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef } from 'react';
+import React, { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import classes from './FiltrationArea.module.scss';
 import useOutsideClick from '../../hooks/useOutsideClick';
