@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { fetchHomeCategories } from '../api/categories';
 import HomeCategories from '../components/HomeCategories';
 import Layout from '../components/Layout';

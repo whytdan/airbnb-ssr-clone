@@ -8,6 +8,7 @@ import {
   SET_HOMES_LOADING,
   SET_HOMES_SUCCESS,
 } from './constants';
+import CONFIG from '../dev.config.json';
 
 const INIT_STATE = {
   homes: [],
@@ -67,7 +68,7 @@ const reducer = (state = INIT_STATE, action) => {
 };
 
 export const homesContext = React.createContext();
-const API = process.env.NEXT_PUBLIC_API_URL;
+const API = CONFIG.API_URL;
 
 function HomesContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
