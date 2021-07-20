@@ -9,29 +9,17 @@ import FilterButton from './FilterButton';
 import { isHousingTypeSetToDefault } from './helpers';
 
 const FlexibleCancellationPopup = dynamic(
-  import('./PopupFilterComponents/FlexibleCancellationPopup'),
-  {
-    ssr: false,
-  }
+  import('./PopupFilterComponents/FlexibleCancellationPopup')
 );
 
 const HousingTypePopup = dynamic(
-  import('./PopupFilterComponents/HousingTypePopup'),
-  {
-    ssr: false,
-  }
+  import('./PopupFilterComponents/HousingTypePopup')
 );
 const InstanceBookingPopup = dynamic(
-  import('./PopupFilterComponents/InstanceBookingPopup'),
-  {
-    ssr: false,
-  }
+  import('./PopupFilterComponents/InstanceBookingPopup')
 );
 const PriceRangePopup = dynamic(
-  import('./PopupFilterComponents/PriceRangePopup/'),
-  {
-    ssr: false,
-  }
+  import('./PopupFilterComponents/PriceRangePopup/')
 );
 
 function FiltrationArea({ setPageNumber }) {
