@@ -1,7 +1,7 @@
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
-import classes from '../FiltrationArea.module.scss';
+import classes from '../../FiltrationArea.module.scss';
 
 function InstanceBookingPopup({ handleChange, value, reset }, ref) {
   return (

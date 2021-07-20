@@ -1,9 +1,9 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import { housingTypeOptions } from '../constants';
-import classes from '../FiltrationArea.module.scss';
-import { isHousingTypeSetToDefault } from '../helpers';
+import { housingTypeOptions } from '../../constants';
+import classes from '../../FiltrationArea.module.scss';
+import { isHousingTypeSetToDefault } from '../../helpers';
 
 function HousingTypePopup({ housingType, handleChange, reset }, ref) {
   return (

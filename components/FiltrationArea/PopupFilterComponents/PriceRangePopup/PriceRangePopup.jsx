@@ -4,7 +4,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import classes from '../FiltrationArea.module.scss';
+import classes from '../../FiltrationArea.module.scss';
 
 function PriceRangePopup(
   { maxPrice, minPrice, handleMaxPriceChange, handleMinPriceChange, reset },

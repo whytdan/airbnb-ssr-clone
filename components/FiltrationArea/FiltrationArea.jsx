@@ -1,15 +1,38 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, forwardRef } from 'react';
+import dynamic from 'next/dynamic';
 import classes from './FiltrationArea.module.scss';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { filterParams } from './constants';
 import { useContext } from 'react';
 import { homesContext } from '../../contexts/HomesContextProvider';
-import FlexibleCancellationPopup from './PopupFilterComponents/FlexibleCancellationPopup';
-import HousingTypePopup from './PopupFilterComponents/HousingTypePopup';
-import InstanceBookingPopup from './PopupFilterComponents/InstanceBookingPopup';
-import PriceRangePopup from './PopupFilterComponents/PriceRangePopup';
 import FilterButton from './FilterButton';
 import { isHousingTypeSetToDefault } from './helpers';
+
+const FlexibleCancellationPopup = dynamic(
+  import('./PopupFilterComponents/FlexibleCancellationPopup'),
+  {
+    ssr: false,
+  }
+);
+
+const HousingTypePopup = dynamic(
+  import('./PopupFilterComponents/HousingTypePopup'),
+  {
+    ssr: false,
+  }
+);
+const InstanceBookingPopup = dynamic(
+  import('./PopupFilterComponents/InstanceBookingPopup'),
+  {
+    ssr: false,
+  }
+);
+const PriceRangePopup = dynamic(
+  import('./PopupFilterComponents/PriceRangePopup/'),
+  {
+    ssr: false,
+  }
+);
 
 function FiltrationArea({ setPageNumber }) {
   const [flexibleCancellation, setFlexibleCancellation] = useState(false);
@@ -164,7 +187,7 @@ function FiltrationArea({ setPageNumber }) {
         <FlexibleCancellationPopup
           value={flexibleCancellation}
           handleChange={handleFlexibleCancellationFilterChange}
-          ref={filterPopupRef}
+          filterPopupRef={filterPopupRef}
         />
       )}
 
@@ -173,7 +196,7 @@ function FiltrationArea({ setPageNumber }) {
           housingType={housingType}
           handleChange={handleHousingTypeFilterChange}
           reset={resetHousingTypeFilter}
-          ref={filterPopupRef}
+          filterPopupRef={filterPopupRef}
         />
       )}
 
@@ -184,7 +207,7 @@ function FiltrationArea({ setPageNumber }) {
           handleMaxPriceChange={handleMaxPriceChange}
           handleMinPriceChange={handleMinPriceChange}
           reset={resetPriceRangeFilter}
-          ref={filterPopupRef}
+          filterPopupRef={filterPopupRef}
         />
       )}
 
@@ -192,7 +215,7 @@ function FiltrationArea({ setPageNumber }) {
         <InstanceBookingPopup
           value={instanceBooking}
           handleChange={handleInstanceBooikngFilterChange}
-          ref={filterPopupRef}
+          filterPopupRef={filterPopupRef}
         />
       )}
     </div>
