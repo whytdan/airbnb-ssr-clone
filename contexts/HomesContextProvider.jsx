@@ -69,6 +69,7 @@ const reducer = (state = INIT_STATE, action) => {
 
 export const homesContext = React.createContext();
 const API = CONFIG.API_URL;
+console.log(API);
 
 function HomesContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
