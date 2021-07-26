@@ -1,12 +1,17 @@
 import React from 'react';
-import HomesContextProvider from '../contexts/HomesContextProvider';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import '../styles/globals.css';
+import rootReducer from '../redux/reducers';
+
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 function MyApp({ Component, pageProps }) {
   return (
-    <HomesContextProvider>
+    <Provider store={store}>
       <Component {...pageProps} />
-    </HomesContextProvider>
+    </Provider>
   );
 }
 
