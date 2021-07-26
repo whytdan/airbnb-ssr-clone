@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/dist/client/router';
+import { useSelector, useDispatch } from 'react-redux';
 import { getCategoryTitle } from '../../api/categories';
 import { fetchHomesByCategory } from '../../api/homes';
 import HomeList from '../../components/HomeList/HomeList';
@@ -8,9 +9,12 @@ import Layout from '../../components/Layout';
 import classes from '../../styles/houses.module.scss';
 import utilsClasses from '../../styles/utils.module.scss';
 import FiltrationArea from '../../components/FiltrationArea/FiltrationArea';
-import { useContext } from 'react';
-import { homesContext } from '../../contexts/HomesContextProvider';
 import HomesMap from '../../components/HomesMap';
+import {
+  clearHomes,
+  fetchHomes,
+  setPreloadedHomes,
+} from '../../redux/actions/homes';
 
 export async function getServerSideProps(ctx) {
   const homes = await fetchHomesByCategory(ctx.query);
@@ -33,19 +37,14 @@ export default function CategoryHomes({
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [prevQueryObjectLink, setPrevQueryObjectLink] = useState(query);
 
-  const {
-    loading,
-    error,
-    homes,
-    hasMore,
-    fetchHomesByCategory,
-    setPreloadedHomes,
-    clearHomes,
-  } = useContext(homesContext);
+  const dispatch = useDispatch();
+  const { loading, error, homes, hasMore } = useSelector(
+    (state) => state.homes
+  );
 
   useEffect(async () => {
     if (isFirstRender) {
-      setPreloadedHomes(preloadedHomes);
+      dispatch(setPreloadedHomes(preloadedHomes));
       setIsFirstRender(false);
       console.log('preloaded');
     } else {
@@ -53,19 +52,19 @@ export default function CategoryHomes({
         console.log('fetch 1st filter page!');
         await setPrevQueryObjectLink(query);
         await setPageNumber(1);
-        await clearHomes();
-        fetchHomesByCategory(query, 1);
+        await dispatch(clearHomes());
+        dispatch(fetchHomes(query));
         return;
       }
       if (pageNumber !== 1) {
         console.log('fetch');
-        fetchHomesByCategory(query, pageNumber);
+        dispatch(fetchHomes(query, pageNumber));
       }
     }
   }, [pageNumber, query]);
 
   useEffect(() => {
-    return () => clearHomes();
+    return () => dispatch(clearHomes());
   }, []);
 
   const observer = useRef();
@@ -94,7 +93,7 @@ export default function CategoryHomes({
         <div className={classes.leftContent}>
           <section className={classes.headingWrapper}>
             <p>
-              {homes.length ? homes.length : preloadedHomes.length} вариант
+              {isFirstRender ? preloadedHomes.length : homes.length} вариант
               жилья
             </p>
             <h1>{categoryTitle}</h1>
