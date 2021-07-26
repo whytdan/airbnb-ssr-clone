@@ -10,11 +10,12 @@ import utilsClasses from '../../styles/utils.module.scss';
 import FiltrationArea from '../../components/FiltrationArea/FiltrationArea';
 import { useContext } from 'react';
 import { homesContext } from '../../contexts/HomesContextProvider';
-import HomesMap from '../../components/HomesMap/';
+import HomesMap from '../../components/HomesMap';
 
-export async function getServerSideProps({ params }) {
-  const homes = await fetchHomesByCategory(params.slug);
-  const categoryTitle = await getCategoryTitle(params.slug);
+export async function getServerSideProps(ctx) {
+  const homes = await fetchHomesByCategory(ctx.query);
+  const categoryTitle = await getCategoryTitle(ctx.params.slug);
+
   return {
     props: {
       homes,
@@ -27,33 +28,41 @@ export default function CategoryHomes({
   homes: preloadedHomes,
   categoryTitle,
 }) {
+  const { query } = useRouter();
   const [pageNumber, setPageNumber] = useState(1);
-  const {
-    query: { slug },
-  } = useRouter();
-
-  const mounted = useRef();
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  const [prevQueryObjectLink, setPrevQueryObjectLink] = useState(query);
 
   const {
     loading,
     error,
     homes,
     hasMore,
-    filterParams,
     fetchHomesByCategory,
     setPreloadedHomes,
     clearHomes,
   } = useContext(homesContext);
 
-  useEffect(() => {
-    if (!mounted.current) {
-      // do componentDidMount logic
+  useEffect(async () => {
+    if (isFirstRender) {
       setPreloadedHomes(preloadedHomes);
+      setIsFirstRender(false);
+      console.log('preloaded');
     } else {
-      // do componentDidUpdate logic
-      fetchHomesByCategory(slug, pageNumber);
+      if (query !== prevQueryObjectLink) {
+        console.log('fetch 1st filter page!');
+        await setPrevQueryObjectLink(query);
+        await setPageNumber(1);
+        await clearHomes();
+        fetchHomesByCategory(query, 1);
+        return;
+      }
+      if (pageNumber !== 1) {
+        console.log('fetch');
+        fetchHomesByCategory(query, pageNumber);
+      }
     }
-  }, [pageNumber, filterParams]);
+  }, [pageNumber, query]);
 
   useEffect(() => {
     return () => clearHomes();
@@ -80,25 +89,26 @@ export default function CategoryHomes({
         <title>Везде - Жилье - Airbnb</title>
       </Head>
       <section
-        ref={mounted}
         className={[utilsClasses.container, classes.contentWrapper].join(' ')}
       >
         <div className={classes.leftContent}>
           <section className={classes.headingWrapper}>
-            <p>{homes.length} вариант жилья</p>
+            <p>
+              {homes.length ? homes.length : preloadedHomes.length} вариант
+              жилья
+            </p>
             <h1>{categoryTitle}</h1>
           </section>
 
-          <FiltrationArea setPageNumber={setPageNumber} />
+          <FiltrationArea />
 
           <HomeList
-            homes={homes}
+            homes={isFirstRender ? preloadedHomes : homes}
             loading={loading}
             error={error}
             lastHomeElementRef={lastHomeElementRef}
           />
         </div>
-
         <div className={classes.rightContent}>
           <HomesMap homes={homes} />
         </div>

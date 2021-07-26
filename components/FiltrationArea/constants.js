@@ -1,19 +1,19 @@
 export const filterParams = [
   {
     label: 'Гибкие правила отмены',
-    value: 'flexibleCancellation',
+    filterName: 'flexibleCancellation',
   },
   {
     label: 'Тип жилья',
-    value: 'housingType',
+    filterName: 'housingType',
   },
   {
     label: 'Цена',
-    value: 'price',
+    filterName: 'price',
   },
   {
     label: 'Мгновенное бронирование',
-    value: 'instanceBooking',
+    filterName: 'instanceBooking',
   },
 ];
 

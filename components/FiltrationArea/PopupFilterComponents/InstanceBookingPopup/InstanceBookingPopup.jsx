@@ -1,9 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
 import classes from '../../FiltrationArea.module.scss';
+import { useRouter } from 'next/router';
 
-function InstanceBookingPopup({ handleChange, value, reset }, ref) {
+function InstanceBookingPopup({ coreState }, ref) {
+  const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
+
+  const router = useRouter();
+  const [checked, setCheked] = useState(
+    router.query.instanceBooking
+      ? JSON.parse(router.query.instanceBooking)
+      : false
+  );
+
+  const handleChange = () => {
+    const nextCheckedValue = !checked;
+    setCheked(nextCheckedValue);
+
+    setFiltersTouched({
+      ...filtersTouched,
+      instanceBooking: nextCheckedValue,
+    });
+
+    if (nextCheckedValue) {
+      setQuery([
+        ...query,
+        {
+          name: 'instanceBooking',
+          value: !!nextCheckedValue,
+        },
+      ]);
+    } else {
+      setQuery(
+        query.filter((queryParam) => queryParam.name !== 'instanceBooking')
+      );
+    }
+  };
+
   return (
     <div
       ref={ref}
@@ -14,11 +48,11 @@ function InstanceBookingPopup({ handleChange, value, reset }, ref) {
           Объявления, которые можно забронировать, не дожидаясь подтверждения
           хозяина.
         </p>
-        <Switch onChange={handleChange} checked={value} color="secondary" />
+        <Switch onChange={handleChange} checked={checked} color="secondary" />
       </div>
       <Button
         onClick={handleChange}
-        disabled={!value}
+        disabled={!checked}
         className={classes.clearBtn}
       >
         Очистить

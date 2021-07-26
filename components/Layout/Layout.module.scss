@@ -3,19 +3,26 @@
   padding-bottom: 15px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fff;
   width: 100%;
   z-index: 99;
 
   .lgNavLogo {
-    width: 102px;
-    height: 32px;
-    display: block;
+    img {
+      width: 102px;
+      height: 32px;
+    }
+    display: inline;
   }
 
   .smNavLogo {
-    width: 30px;
-    height: 30px;
+    img {
+      width: 30px;
+      height: 30px;
+    }
     display: none;
   }
 

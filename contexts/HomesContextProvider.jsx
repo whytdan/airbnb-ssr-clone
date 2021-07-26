@@ -3,7 +3,6 @@ import React, { useReducer } from 'react';
 import {
   CLEAR_HOMES,
   SET_HOMES_ERROR,
-  SET_HOMES_FILTER_PARAMS,
   SET_HOMES_HAS_MORE,
   SET_HOMES_LOADING,
   SET_HOMES_SUCCESS,
@@ -15,13 +14,6 @@ const INIT_STATE = {
   error: null,
   loading: false,
   hasMore: true,
-  filterParams: {
-    flexibleCancellation: '',
-    housingType: '',
-    minPrice: 0,
-    maxPrice: 50000,
-    instanceBooking: '',
-  },
   limit: 5,
 };
 
@@ -52,15 +44,13 @@ const reducer = (state = INIT_STATE, action) => {
         ...state,
         loading: true,
       };
-    case SET_HOMES_FILTER_PARAMS:
-      return {
-        ...state,
-        homes: [],
-        filterParams: action.payload,
-      };
     case CLEAR_HOMES:
       return {
-        ...INIT_STATE,
+        homes: [],
+        error: null,
+        loading: false,
+        hasMore: true,
+        limit: 5,
       };
     default:
       return state;
@@ -68,8 +58,9 @@ const reducer = (state = INIT_STATE, action) => {
 };
 
 export const homesContext = React.createContext();
-const API = CONFIG.API_URL;
-console.log(API);
+
+const CancelToken = axios.CancelToken;
+let cancel;
 
 function HomesContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -87,47 +78,36 @@ function HomesContextProvider({ children }) {
 
   const clearHomes = () => dispatch({ type: CLEAR_HOMES });
 
-  const setHomesFilterParams = (filterParam) => {
-    dispatch({
-      type: 'SET_HOMES_FILTER_PARAMS',
-      payload: {
-        ...state.filterParams,
-        ...filterParam,
-      },
-    });
-  };
-
   const setPreloadedHomes = (homes) => setHomesSuccess(homes);
 
-  const fetchHomesByCategory = async (slug, pageNumber = 1) => {
+  const fetchHomesByCategory = async (query, pageNumber = 1) => {
     setHomesLoading();
     try {
-      const housingTypeQuery = state.filterParams.housingType
-        ? Object.entries(state.filterParams.housingType).reduce(
-            (a, [key, value]) => {
-              return a + (value ? `housingType_like=${key}&` : '');
-            },
-            ''
-          )
-        : '';
-      const query = `${API}/homes?${housingTypeQuery}`;
-      const res = await axios.get(query, {
+      const apiQuery = `${CONFIG.API_URL}/homes`;
+      cancel && cancel();
+      const res = await axios.get(apiQuery, {
         params: {
           ['_page']: pageNumber,
           ['_limit']: state.limit,
-          ['categories_like']: slug,
-          ['flexibleCancellation_like']:
-            state.filterParams.flexibleCancellation,
-          ['instanceBooking_like']: state.filterParams.instanceBooking,
-          ['price_gte']: state.filterParams.minPrice,
-          ['price_lte']: state.filterParams.maxPrice,
+          ['categories_like']: query.slug,
+          ...query,
+          ['slug']: '',
         },
+        cancelToken: new CancelToken(function executor(c) {
+          // An executor function receives a cancel function as a parameter
+          cancel = c;
+        }),
       });
       setHomesSuccess(res.data);
       setHomesHasMore(res.data.length > 0);
+      cancel();
     } catch (error) {
-      console.log(error);
-      setHomesError(error);
+      if (axios.isCancel(error)) {
+        console.log('axios cancel operation');
+      } else {
+        setHomesError(error);
+        console.log(error);
+      }
     }
   };
 
@@ -141,8 +121,8 @@ function HomesContextProvider({ children }) {
         filterParams: state.filterParams,
         fetchHomesByCategory,
         setPreloadedHomes,
+        setHomesSuccess,
         clearHomes,
-        setHomesFilterParams,
       }}
     >
       {children}

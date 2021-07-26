@@ -3,8 +3,12 @@ import Link from 'next/link';
 import utilsClasses from '../../styles/utils.module.scss';
 import layoutClasses from './Layout.module.scss';
 import homeClasses from '../../styles/home.module.scss';
+import { Button } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 export default function Nav({ home }) {
+  const router = useRouter();
+
   return (
     <nav
       className={[
@@ -13,24 +17,24 @@ export default function Nav({ home }) {
       ].join(' ')}
     >
       <Link href="/">
-        <a>
-          <img
-            className={layoutClasses.lgNavLogo}
-            src="/images/logo-lg.png"
-            alt="Airbnb logo"
-          />
+        <a className={layoutClasses.lgNavLogo}>
+          <img src="/images/logo-lg.png" alt="Airbnb logo" />
         </a>
       </Link>
 
       <Link href="/">
-        <a>
-          <img
-            className={layoutClasses.smNavLogo}
-            src="/images/logo-sm.png"
-            alt="Airbnb logo"
-          />
+        <a className={layoutClasses.smNavLogo}>
+          <img src="/images/logo-sm.png" alt="Airbnb logo" />
         </a>
       </Link>
+
+      <Button
+        onClick={() => router.push('/homes/create')}
+        variant="outlined"
+        color="secondary"
+      >
+        Create
+      </Button>
     </nav>
   );
 }

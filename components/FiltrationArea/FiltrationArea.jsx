@@ -1,12 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import classes from './FiltrationArea.module.scss';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { filterParams } from './constants';
-import { useContext } from 'react';
-import { homesContext } from '../../contexts/HomesContextProvider';
 import FilterButton from './FilterButton';
-import { isHousingTypeSetToDefault } from './helpers';
+import { useRouter } from 'next/router';
 
 const FlexibleCancellationPopup = dynamic(
   import('./PopupFilterComponents/FlexibleCancellationPopup')
@@ -22,19 +20,10 @@ const PriceRangePopup = dynamic(
   import('./PopupFilterComponents/PriceRangePopup/')
 );
 
-function FiltrationArea({ setPageNumber }) {
-  const [flexibleCancellation, setFlexibleCancellation] = useState(false);
-  const [housingType, setHousingType] = useState({
-    EH: false,
-    SR: false,
-    HR: false,
-    SHR: false,
-  });
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(50000);
-  const [instanceBooking, setInstanceBooking] = useState(false);
+function FiltrationArea() {
+  const router = useRouter();
 
-  const [filtersPopupState, setFiltersPopupState] = useState({
+  const [filtersPopupIsOpen, setFiltersPopupIsOpen] = useState({
     flexibleCancellation: false,
     housingType: false,
     price: false,
@@ -42,19 +31,46 @@ function FiltrationArea({ setPageNumber }) {
   });
 
   const [filtersTouched, setFiltersTouched] = useState({
-    flexibleCancellation: false,
-    housingType: false,
-    price: false,
-    instanceBooking: false,
+    flexibleCancellation: !!router.query.flexibleCancellation,
+    housingType: !!router.query['housingType_like'],
+    price:
+      (+router.query['price_lte'] !== 50000 && !!router.query['price_lte']) ||
+      (+router.query['price_gte'] !== 0 && !!router.query['price_gte']),
+    instanceBooking: !!router.query.instanceBooking,
   });
 
-  const { setHomesFilterParams } = useContext(homesContext);
+  const [query, setQuery] = useState([]);
+
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const filterPopupRef = useRef();
 
+  useEffect(() => {
+    console.log(query);
+    if (isFirstRender) {
+      setIsFirstRender(false);
+    } else {
+      router.replace(
+        {
+          pathname: `/categories/${router.query.slug}`,
+          query: query.reduce((a, queryParam) => {
+            return {
+              ...a,
+              [queryParam.name]: queryParam.value,
+            };
+          }, {}),
+        },
+        undefined,
+        {
+          shallow: true,
+        }
+      );
+    }
+  }, [query]);
+
   const hideFilterPopups = () =>
-    setFiltersPopupState({
-      ...Object.entries(filtersPopupState).map(([key]) => ({
+    setFiltersPopupIsOpen({
+      ...Object.entries(filtersPopupIsOpen).map(([key]) => ({
         [key]: false,
       })),
     });
@@ -63,146 +79,56 @@ function FiltrationArea({ setPageNumber }) {
   useOutsideClick(filterPopupRef, hideFilterPopups);
 
   const handleFilterPopupOpen = (filterName) => {
-    setFiltersPopupState({
-      ...filtersPopupState,
+    setFiltersPopupIsOpen({
+      ...filtersPopupIsOpen,
       [filterName]: true,
     });
   };
 
-  const handleFlexibleCancellationFilterChange = async () => {
-    const newValue = !flexibleCancellation;
-    setFlexibleCancellation(newValue);
-    setFiltersTouched({
-      ...filtersTouched,
-      flexibleCancellation: !filtersTouched.flexibleCancellation,
-    });
-    setHomesFilterParams({ flexibleCancellation: newValue ? newValue : '' });
-    setPageNumber(1);
-  };
-
-  const handleHousingTypeFilterChange = (e) => {
-    const newState = {
-      ...housingType,
-      [e.target.name]: !housingType[e.target.name],
-    };
-    setHousingType(newState);
-    if (isHousingTypeSetToDefault(newState)) {
-      setFiltersTouched({
-        ...filtersTouched,
-        housingType: true,
-      });
-    } else {
-      setFiltersTouched({
-        ...filtersTouched,
-        housingType: false,
-      });
-    }
-    setHomesFilterParams({ housingType: newState });
-    setPageNumber(1);
-  };
-
-  const resetHousingTypeFilter = () => {
-    setHousingType({
-      EH: false,
-      SR: false,
-      HR: false,
-      SHR: false,
-    });
-    setFiltersTouched({
-      ...filtersTouched,
-      housingType: false,
-    });
-    setHomesFilterParams({ housingType: '' });
-    setPageNumber(1);
-  };
-
-  const handleMaxPriceChange = (e) => {
-    const newValue = +e.target.value;
-    setMaxPrice(newValue);
-    setFiltersTouched({
-      ...filtersTouched,
-      price: !(newValue === 50000 && minPrice === 0),
-    });
-    setHomesFilterParams({ maxPrice: newValue });
-    setPageNumber(1);
-  };
-
-  const handleMinPriceChange = (e) => {
-    const newValue = +e.target.value;
-    setMinPrice(newValue);
-    setFiltersTouched({
-      ...filtersTouched,
-      price: !(maxPrice === 50000 && newValue === 0),
-    });
-    setHomesFilterParams({ minPrice: newValue });
-    setPageNumber(1);
-  };
-
-  const resetPriceRangeFilter = () => {
-    setMinPrice(0);
-    setMaxPrice(50000);
-    setFiltersTouched({
-      ...filtersTouched,
-      price: false,
-    });
-    setHomesFilterParams({ minPrice: 0, maxPrice: 50000 });
-    setPageNumber(1);
-  };
-
-  const handleInstanceBooikngFilterChange = async () => {
-    const newValue = !instanceBooking;
-    setInstanceBooking(newValue);
-    setFiltersTouched({
-      ...filtersTouched,
-      instanceBooking: !filtersTouched.instanceBooking,
-    });
-    setHomesFilterParams({ instanceBooking: newValue ? newValue : '' });
-    setPageNumber(1);
+  const filtrationAreaStateObject = {
+    setFiltersTouched,
+    filtersTouched,
+    setQuery,
+    query,
   };
 
   return (
     <div className={[classes.wrapper].join(' ')}>
       {filterParams.map((param) => (
         <FilterButton
-          key={param.value}
+          key={param.filterName}
           label={param.label}
-          handleFilterPopupOpen={() => handleFilterPopupOpen(param.value)}
-          isActive={filtersTouched[param.value]}
+          handleFilterPopupOpen={() => handleFilterPopupOpen(param.filterName)}
+          isActive={filtersTouched[param.filterName]}
         />
       ))}
 
-      {filtersPopupState.flexibleCancellation && (
+      {filtersPopupIsOpen.flexibleCancellation && (
         <FlexibleCancellationPopup
-          value={flexibleCancellation}
-          handleChange={handleFlexibleCancellationFilterChange}
+          coreState={filtrationAreaStateObject}
           filterPopupRef={filterPopupRef}
         />
       )}
 
-      {filtersPopupState.housingType && (
+      {filtersPopupIsOpen.housingType && (
         <HousingTypePopup
-          housingType={housingType}
-          handleChange={handleHousingTypeFilterChange}
-          reset={resetHousingTypeFilter}
+          coreState={filtrationAreaStateObject}
           filterPopupRef={filterPopupRef}
         />
       )}
 
-      {filtersPopupState.price && (
+      {filtersPopupIsOpen.price && (
         <PriceRangePopup
-          maxPrice={maxPrice}
-          minPrice={minPrice}
-          handleMaxPriceChange={handleMaxPriceChange}
-          handleMinPriceChange={handleMinPriceChange}
-          reset={resetPriceRangeFilter}
+          coreState={filtrationAreaStateObject}
           filterPopupRef={filterPopupRef}
         />
       )}
 
-      {filtersPopupState.instanceBooking && (
+      {filtersPopupIsOpen.instanceBooking && (
         <InstanceBookingPopup
-          value={instanceBooking}
-          handleChange={handleInstanceBooikngFilterChange}
+          coreState={filtrationAreaStateObject}
+          // value={filtrationAreaState.instanceBooking}
+          // handleChange={handleInstanceBooikngFilterChange}
           filterPopupRef={filterPopupRef}
         />
       )}
