@@ -22,7 +22,6 @@ export default function ImageDropzone({
   const [fileObjects, setFileObjects] = useState(formikImages);
 
   const classes = useStyles();
-  // const { error } = props;
 
   const onFileDelete = (deleteFileObj) => {
     const filteredFileObjects = fileObjects.filter(
