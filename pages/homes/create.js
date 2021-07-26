@@ -1,14 +1,16 @@
 import React from 'react';
-import { Button, Checkbox, TextField } from '@material-ui/core';
+import * as Yup from 'yup';
+import { Button, Checkbox, FormControl, TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { housingTypeOptions } from '../../components/FiltrationArea/constants';
 import Layout from '../../components/Layout';
 import classes from '../../styles/homeCreation.module.scss';
 import { fetchHomeCategories } from '../../api/categories';
 import ImageDropzone from '../../components/ImageDropzone';
+import TextError from '../../components/TextError';
 
 export async function getStaticProps() {
   const categories = await fetchHomeCategories();
@@ -31,7 +33,6 @@ export default function HomeCreationPage({ categoryOptions }) {
     location: '',
     categories: [],
     housingType: [],
-    secondaryTitle: '',
     guestsCapacity: '',
     bedroomAmount: '',
     bedAmount: '',
@@ -40,6 +41,41 @@ export default function HomeCreationPage({ categoryOptions }) {
     instanceBooking: false,
     flexibleCancellation: false,
     images: [],
+  };
+
+  const validationSchema = Yup.object({
+    title: Yup.string().required('Обязательное поле!'),
+    location: Yup.string().required('Обязательное поле!'),
+    categories: Yup.array()
+      .min(1, 'Выберите как минимум одну категорию!')
+      .required('Обязательное поле!'),
+    housingType: Yup.array()
+      .min(1, 'Выберите как минимум один тип!')
+      .required('Обязательное поле!'),
+    guestsCapacity: Yup.number()
+      .typeError('Значение должно быть числом!')
+      .required('Обязательное поле!'),
+    bedroomAmount: Yup.number()
+      .typeError('Значение должно быть числом!')
+      .required('Обязательное поле!'),
+    bedAmount: Yup.number()
+      .typeError('Значение должно быть числом!')
+      .required('Обязательное поле!'),
+    bathAmount: Yup.number()
+      .typeError('Значение должно быть числом!')
+      .required('Обязательное поле!'),
+    price: Yup.number()
+      .typeError('Значение должно быть числом!')
+      .required('Обязательное поле!')
+      .moreThan(0, 'Бесплатно?'),
+    images: Yup.array()
+      .min(1, 'Выберите как минимум одно изображение!')
+      .required('Обязательное поле!'),
+  });
+
+  const onSubmit = (values, { resetForm }) => {
+    alert(JSON.stringify(values, 0, 2));
+    resetForm();
   };
 
   const spreadGeneralMuiTreats = () => ({
@@ -52,52 +88,63 @@ export default function HomeCreationPage({ categoryOptions }) {
     <Layout>
       <h2 className={classes.title}>Загрузить свое жилище</h2>
 
-      <Formik initialValues={initialValues}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
         {({ handleChange, values, setFieldValue }) => (
           <Form className={classes.form}>
-            <Field
-              name="title"
-              label="Наименование жилища"
-              placeholder="Введите название"
-              className={classes.input}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              {...spreadGeneralMuiTreats()}
-            />
+            <FormControl className={classes.input}>
+              <Field
+                name="title"
+                label="Наименование жилища"
+                placeholder="Введите название"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                {...spreadGeneralMuiTreats()}
+              />
+              <ErrorMessage component={TextError} name="title" />
+            </FormControl>
 
-            <Field
-              name="location"
-              label="Локация"
-              placeholder="Село или город, облать или регион, страна"
-              className={classes.input}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              {...spreadGeneralMuiTreats()}
-            />
+            <FormControl className={classes.input}>
+              <Field
+                name="location"
+                label="Локация"
+                placeholder="Село или город, облать или регион, страна"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                {...spreadGeneralMuiTreats()}
+              />
+              <ErrorMessage component={TextError} name="location" />
+            </FormControl>
 
-            <Autocomplete
-              multiple
-              options={categoryOptions}
-              onChange={(_, selectedCategories) => {
-                setFieldValue('categories', selectedCategories);
-              }}
-              getOptionLabel={(option) => option.label}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
-                  color="secondary"
-                  label="Выберите категорию(ии)"
-                  placeholder="Категор(ия)(ии)"
-                  className={classes.input}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              )}
-            />
+            <FormControl className={classes.input}>
+              <Autocomplete
+                multiple
+                options={categoryOptions}
+                onChange={(_, selectedCategories) => {
+                  setFieldValue('categories', selectedCategories);
+                }}
+                getOptionLabel={(option) => option.label}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    color="secondary"
+                    label="Выберите категорию(ии)"
+                    placeholder="Категор(ия)(ии)"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                )}
+              />
+
+              <ErrorMessage component={TextError} name="categories" />
+            </FormControl>
 
             <ul className={classes.housingTypeWrapper}>
               {housingTypeOptions.map((type) => (
@@ -126,72 +173,83 @@ export default function HomeCreationPage({ categoryOptions }) {
                   </div>
                 </li>
               ))}
+              <ErrorMessage component={TextError} name="housingType" />
             </ul>
 
-            <Field
-              name="secondaryTitle"
-              label="Вторичное название (с адресом)"
-              className={classes.input}
-              disabled
-              {...spreadGeneralMuiTreats()}
-            />
-
             <div className={classes.amountValuesWrapper}>
-              <Field
-                name="capacityPeople"
-                label="Лимит гостей"
-                placeholder="Введите кол-во"
+              <FormControl
                 className={[classes.input, classes.amountInput].join(' ')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                {...spreadGeneralMuiTreats()}
-              />
+              >
+                <Field
+                  name="guestsCapacity"
+                  label="Лимит гостей"
+                  placeholder="Введите кол-во"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  {...spreadGeneralMuiTreats()}
+                />
+                <ErrorMessage component={TextError} name="guestsCapacity" />
+              </FormControl>
 
-              <Field
-                name="bedroomAmount"
-                label="Количество спален"
-                placeholder="Введите кол-во"
+              <FormControl
                 className={[classes.input, classes.amountInput].join(' ')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                {...spreadGeneralMuiTreats()}
-              />
+              >
+                <Field
+                  name="bedroomAmount"
+                  label="Количество спален"
+                  placeholder="Введите кол-во"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  {...spreadGeneralMuiTreats()}
+                />
+                <ErrorMessage component={TextError} name="bedroomAmount" />
+              </FormControl>
 
-              <Field
-                name="bedAmount"
-                label="Количество кроватей"
-                placeholder="Введите кол-во"
+              <FormControl
                 className={[classes.input, classes.amountInput].join(' ')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                {...spreadGeneralMuiTreats()}
-              />
+              >
+                <Field
+                  name="bedAmount"
+                  label="Количество кроватей"
+                  placeholder="Введите кол-во"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  {...spreadGeneralMuiTreats()}
+                />
+                <ErrorMessage component={TextError} name="bedAmount" />
+              </FormControl>
 
-              <Field
-                name="bathAmount"
-                label="Количество ванн"
-                placeholder="Введите кол-во"
+              <FormControl
                 className={[classes.input, classes.amountInput].join(' ')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                {...spreadGeneralMuiTreats()}
-              />
+              >
+                <Field
+                  name="bathAmount"
+                  label="Количество ванн"
+                  placeholder="Введите кол-во"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  {...spreadGeneralMuiTreats()}
+                />
+                <ErrorMessage component={TextError} name="bathAmount" />
+              </FormControl>
             </div>
 
-            <Field
-              name="price"
-              label="Цена за одну ночь (₽)"
-              placeholder="Введите цену (₽)"
-              className={classes.input}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              {...spreadGeneralMuiTreats()}
-            />
+            <FormControl className={classes.input}>
+              <Field
+                name="price"
+                label="Цена за одну ночь (₽)"
+                placeholder="Введите цену (₽)"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                {...spreadGeneralMuiTreats()}
+              />
+              <ErrorMessage component={TextError} name="price" />
+            </FormControl>
 
             <FormGroup row style={{ marginBottom: 30 }}>
               <FormControlLabel
@@ -222,10 +280,13 @@ export default function HomeCreationPage({ categoryOptions }) {
               formikImages={values.images}
             />
 
+            <ErrorMessage component={TextError} name="images" />
+
             <Button
               variant="contained"
               color="secondary"
               className={classes.button}
+              type="submit"
             >
               Опубликовать
             </Button>
