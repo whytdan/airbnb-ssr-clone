@@ -93,7 +93,6 @@ function PriceRangePopup({ coreState }, ref) {
           <OutlinedInput
             id="outlined-min-price"
             className={classes.priceInp}
-            variant="outlined"
             startAdornment={<InputAdornment position="start">₽</InputAdornment>}
             labelWidth={60}
             value={priceRange.minPrice}
@@ -106,7 +105,7 @@ function PriceRangePopup({ coreState }, ref) {
           <InputLabel htmlFor="outlined-max-price">макс. цена</InputLabel>
           <OutlinedInput
             id="outlined-max-price"
-            variant="outlined"
+            className={classes.priceInp}
             startAdornment={<InputAdornment position="start">₽</InputAdornment>}
             labelWidth={60}
             value={priceRange.maxPrice}

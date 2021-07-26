@@ -4,13 +4,22 @@ import Button from '@material-ui/core/Button';
 import classes from '../../FiltrationArea.module.scss';
 import { useRouter } from 'next/router';
 
+function convertToBoolean(input: string): boolean | undefined {
+  try {
+    return JSON.parse(input);
+  } catch (e) {
+    return undefined;
+  }
+}
+
 function FlexibleCancellationPopup({ coreState }, ref) {
   const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
 
   const router = useRouter();
-  const [checked, setCheked] = useState(
+  const [checked, setCheked] = useState<boolean>(
     router.query.flexibleCancellation
-      ? JSON.parse(router.query.flexibleCancellation)
+      ? // @ts-ignore
+        convertToBoolean(router.query.flexibleCancellation)
       : false
   );
 

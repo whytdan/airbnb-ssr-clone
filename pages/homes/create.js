@@ -290,7 +290,6 @@ export default function HomeCreationPage({ categoryOptions }) {
             >
               Опубликовать
             </Button>
-
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </Form>
         )}
