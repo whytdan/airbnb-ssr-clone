@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import { housingTypeOptions } from '../../constants';
@@ -8,18 +8,19 @@ import {
   calculateInitialHouseType,
   isHousingTypeStateSetToDefault,
 } from './helpers';
+import { IhousingTypeState } from './interfaces';
 
 function HousingTypePopup({ coreState }, ref) {
   const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
   const router = useRouter();
-  const [housingTypeState, setHousingTypeState] = useState({
+  const [housingTypeState, setHousingTypeState] = useState<IhousingTypeState>({
     EH: calculateInitialHouseType(router, 'EH'),
     SR: calculateInitialHouseType(router, 'SR'),
     HR: calculateInitialHouseType(router, 'HR'),
     SHR: calculateInitialHouseType(router, 'SHR'),
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const housingTypeName = e.target.name;
     const nextFilterBoolVal = !housingTypeState[housingTypeName];
     const nextHousingTypeState = {

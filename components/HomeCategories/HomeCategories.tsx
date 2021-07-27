@@ -7,8 +7,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import homeClasses from '../../styles/home.module.scss';
 import classes from './HomeCategories.module.scss';
 import { sliderSettings } from './configs';
+import { ICategoryObject } from '../../api/interfaces';
 
-export default function HomeCategories({ categories }) {
+interface HomeCategoriesProps {
+  categories: ICategoryObject[];
+}
+
+export default function HomeCategories({ categories }: HomeCategoriesProps) {
   return (
     <div className={[classes.container, homeClasses.container].join(' ')}>
       <h2>Живите где угодно</h2>

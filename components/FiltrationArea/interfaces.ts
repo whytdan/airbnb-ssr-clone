@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface IFiltersPopupIsOpen {
   flexibleCancellation: boolean;
   housingType: boolean;
@@ -26,6 +24,7 @@ export interface IFiltrationAreaCore {
   query: IFiltrationAreaQueryParam[];
 }
 
-export interface IFilterPopupProps {
+export interface FilterPopupProps {
   coreState: IFiltrationAreaCore;
+  filterPopupRef: React.RefObject<HTMLDivElement>;
 }

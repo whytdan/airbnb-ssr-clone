@@ -5,7 +5,7 @@ export default function useOutsideClick(ref, callback) {
     /**
      * Hook that calls callback, if user clicks outside of the passed ref
      */
-    function handleClickOutside(event) {
+    function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target)) {
         callback();
       }

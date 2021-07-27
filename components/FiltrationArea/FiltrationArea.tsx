@@ -50,7 +50,7 @@ function FiltrationArea() {
 
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
-  const filterPopupRef = useRef();
+  const filterPopupRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     console.log(query);

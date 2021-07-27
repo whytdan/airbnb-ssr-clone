@@ -11,6 +11,7 @@ import classes from '../../styles/homeCreation.module.scss';
 import { fetchHomeCategories } from '../../api/categories';
 import ImageDropzone from '../../components/ImageDropzone';
 import TextError from '../../components/TextError';
+import Head from 'next/head';
 
 export async function getStaticProps() {
   const categories = await fetchHomeCategories();
@@ -25,6 +26,12 @@ export async function getStaticProps() {
       categoryOptions,
     },
   };
+}
+
+interface ICategoryOption {
+  id: number;
+  label: string;
+  value: string;
 }
 
 export default function HomeCreationPage({ categoryOptions }) {
@@ -74,7 +81,7 @@ export default function HomeCreationPage({ categoryOptions }) {
   });
 
   const onSubmit = (values, { resetForm }) => {
-    alert(JSON.stringify(values, 0, 2));
+    alert(JSON.stringify(values, null, 2));
     resetForm();
   };
 
@@ -85,7 +92,10 @@ export default function HomeCreationPage({ categoryOptions }) {
   });
 
   return (
-    <Layout>
+    <Layout home={false}>
+      <Head>
+        <title>Загрузить свое жилище</title>
+      </Head>
       <h2 className={classes.title}>Загрузить свое жилище</h2>
 
       <Formik
@@ -128,7 +138,7 @@ export default function HomeCreationPage({ categoryOptions }) {
                 onChange={(_, selectedCategories) => {
                   setFieldValue('categories', selectedCategories);
                 }}
-                getOptionLabel={(option) => option.label}
+                getOptionLabel={(option: ICategoryOption) => option.label}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -290,7 +300,7 @@ export default function HomeCreationPage({ categoryOptions }) {
             >
               Опубликовать
             </Button>
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
+            <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
         )}
       </Formik>

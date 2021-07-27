@@ -6,7 +6,11 @@ import homeClasses from '../../styles/home.module.scss';
 import { Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
 
-export default function Nav({ home }) {
+interface NavProps {
+  home: boolean | undefined;
+}
+
+export default function Nav({ home }: NavProps) {
   const router = useRouter();
 
   return (

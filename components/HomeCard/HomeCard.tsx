@@ -4,8 +4,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import classes from './HomeCard.module.scss';
+import { IHomeObject } from '../../api/interfaces';
 
-function HomeCard({ data }, ref) {
+interface HomeCardProps {
+  data: IHomeObject;
+}
+
+function HomeCard({ data }: HomeCardProps, ref) {
   return (
     <div className={classes.card} ref={ref}>
       <hr className={classes.colorDivider} />
