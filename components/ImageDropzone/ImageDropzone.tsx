@@ -12,12 +12,24 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+interface ImageDropzoneProps {
+  name: string;
+  setFieldValue(name: string, value: any): void;
+  buttonText: string;
+  formikImages:
+    | Array<{
+        data: string;
+        file: File;
+      }>
+    | [];
+}
+
 export default function ImageDropzone({
   name,
   setFieldValue,
   buttonText,
   formikImages,
-}) {
+}: ImageDropzoneProps) {
   const [open, setOpen] = useState(false);
   const [fileObjects, setFileObjects] = useState(formikImages);
 

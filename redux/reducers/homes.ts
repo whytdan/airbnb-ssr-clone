@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { CLEAR_HOMES } from '../../contexts/constants';
 import {
   FETCH_HOMES_ERROR,
@@ -5,8 +6,16 @@ import {
   FETCH_HOMES_SUCCESS,
   SET_PRELOADED_HOMES,
 } from '../actions/actionTypes';
+import { IHomeObject } from '../../api/interfaces';
 
-const INIT_STATE = {
+interface IHomesState {
+  homes: IHomeObject[];
+  error: AxiosError;
+  loading: boolean;
+  hasMore: boolean;
+}
+
+const INIT_STATE: IHomesState = {
   homes: [],
   error: null,
   loading: false,

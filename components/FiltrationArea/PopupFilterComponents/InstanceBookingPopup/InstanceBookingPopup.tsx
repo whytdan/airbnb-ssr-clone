@@ -10,7 +10,8 @@ function InstanceBookingPopup({ coreState }, ref) {
   const router = useRouter();
   const [checked, setCheked] = useState(
     router.query.instanceBooking
-      ? JSON.parse(router.query.instanceBooking)
+      ? // @ts-ignore
+        JSON.parse(router.query.instanceBooking)
       : false
   );
 

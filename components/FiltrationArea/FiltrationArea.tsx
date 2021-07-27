@@ -5,6 +5,12 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 import { filterParams } from './constants';
 import FilterButton from './FilterButton';
 import { useRouter } from 'next/router';
+import {
+  IFiltersPopupIsOpen,
+  IFiltersPopupIsTouched,
+  IFiltrationAreaCore,
+  IFiltrationAreaQueryParam,
+} from './interfaces';
 
 const FlexibleCancellationPopup = dynamic(
   import('./PopupFilterComponents/FlexibleCancellationPopup')
@@ -17,20 +23,21 @@ const InstanceBookingPopup = dynamic(
   import('./PopupFilterComponents/InstanceBookingPopup')
 );
 const PriceRangePopup = dynamic(
-  import('./PopupFilterComponents/PriceRangePopup/')
+  import('./PopupFilterComponents/PriceRangePopup')
 );
 
 function FiltrationArea() {
   const router = useRouter();
 
-  const [filtersPopupIsOpen, setFiltersPopupIsOpen] = useState({
-    flexibleCancellation: false,
-    housingType: false,
-    price: false,
-    instanceBooking: false,
-  });
+  const [filtersPopupIsOpen, setFiltersPopupIsOpen] =
+    useState<IFiltersPopupIsOpen>({
+      flexibleCancellation: false,
+      housingType: false,
+      price: false,
+      instanceBooking: false,
+    });
 
-  const [filtersTouched, setFiltersTouched] = useState({
+  const [filtersTouched, setFiltersTouched] = useState<IFiltersPopupIsTouched>({
     flexibleCancellation: !!router.query.flexibleCancellation,
     housingType: !!router.query['housingType_like'],
     price:
@@ -39,11 +46,11 @@ function FiltrationArea() {
     instanceBooking: !!router.query.instanceBooking,
   });
 
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState<IFiltrationAreaQueryParam[]>([]);
 
-  const [isFirstRender, setIsFirstRender] = useState(true);
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
-  const filterPopupRef = useRef();
+  const filterPopupRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     console.log(query);
@@ -70,9 +77,10 @@ function FiltrationArea() {
 
   const hideFilterPopups = () =>
     setFiltersPopupIsOpen({
-      ...Object.entries(filtersPopupIsOpen).map(([key]) => ({
-        [key]: false,
-      })),
+      flexibleCancellation: false,
+      housingType: false,
+      price: false,
+      instanceBooking: false,
     });
 
   // * Hook that calls callback, if user clicks outside of the passed ref
@@ -85,7 +93,7 @@ function FiltrationArea() {
     });
   };
 
-  const filtrationAreaStateObject = {
+  const filtrationAreaStateObject: IFiltrationAreaCore = {
     setFiltersTouched,
     filtersTouched,
     setQuery,
@@ -127,8 +135,6 @@ function FiltrationArea() {
       {filtersPopupIsOpen.instanceBooking && (
         <InstanceBookingPopup
           coreState={filtrationAreaStateObject}
-          // value={filtrationAreaState.instanceBooking}
-          // handleChange={handleInstanceBooikngFilterChange}
           filterPopupRef={filterPopupRef}
         />
       )}

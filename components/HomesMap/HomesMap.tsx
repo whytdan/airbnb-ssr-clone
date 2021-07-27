@@ -1,9 +1,14 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
-import HomeMarker from './HomeMarker.';
+import HomeMarker from './HomeMarker';
 import classes from './HomesMap.module.scss';
+import { IHomeObject } from '../../api/interfaces';
 
-export default function HomesMap({ homes }) {
+interface HomesMapProps {
+  homes: IHomeObject[];
+}
+
+export default function HomesMap({ homes }: HomesMapProps) {
   const defaultProps = {
     center: {
       lat: 42.293564,
@@ -28,7 +33,6 @@ export default function HomesMap({ homes }) {
             home={home}
           />
         ))}
-        {/* <AnyReactComponent lat={42.42159} lng={78.68404} text="My Marker" /> */}
       </GoogleMapReact>
     </div>
   );
