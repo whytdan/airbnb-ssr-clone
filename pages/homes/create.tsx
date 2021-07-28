@@ -13,9 +13,10 @@ import { fetchHomeCategories } from '../../api/categories';
 import ImageDropzone from '../../components/ImageDropzone';
 import TextError from '../../components/TextError';
 import Head from 'next/head';
+import { ICategoryObject } from '../../api/interfaces';
 
 export async function getStaticProps() {
-  const categories = await fetchHomeCategories();
+  const categories: ICategoryObject[] = await fetchHomeCategories();
   const categoryOptions = categories.map((category) => ({
     id: category.id,
     label: category.title,
