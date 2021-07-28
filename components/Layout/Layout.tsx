@@ -3,10 +3,15 @@ import Head from 'next/head';
 import Nav from './Nav';
 import classes from './Layout.module.scss';
 
+interface LayoutProps {
+  children: React.ReactNode;
+  home: boolean;
+}
+
 export const siteTitle =
   'Airbnb: жилье для отпуска, домики, дома на пляже, уникальные объекты и Впечатления';
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home }: LayoutProps) {
   return (
     <>
       <Head>

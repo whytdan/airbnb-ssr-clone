@@ -3,4 +3,5 @@ export interface IhousingTypeState {
   SR: boolean;
   HR: boolean;
   SHR: boolean;
+  [key: string]: boolean;
 }

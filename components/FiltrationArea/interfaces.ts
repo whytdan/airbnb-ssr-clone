@@ -3,6 +3,7 @@ export interface IFiltersPopupIsOpen {
   housingType: boolean;
   price: boolean;
   instanceBooking: boolean;
+  [key: string]: boolean;
 }
 
 export interface IFiltersPopupIsTouched {
@@ -10,6 +11,7 @@ export interface IFiltersPopupIsTouched {
   housingType: boolean;
   price: boolean;
   instanceBooking: boolean;
+  [key: string]: boolean;
 }
 
 export interface IFiltrationAreaQueryParam {
@@ -24,7 +26,11 @@ export interface IFiltrationAreaCore {
   query: IFiltrationAreaQueryParam[];
 }
 
-export interface FilterPopupProps {
+export interface FilterPopupWrapperProps {
   coreState: IFiltrationAreaCore;
   filterPopupRef: React.RefObject<HTMLDivElement>;
+}
+
+export interface FilterPopupProps {
+  coreState: IFiltrationAreaCore;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, ForwardedRef } from 'react';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -7,8 +7,12 @@ import Button from '@material-ui/core/Button';
 import classes from '../../FiltrationArea.module.scss';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { FilterPopupProps } from '../../interfaces';
 
-function PriceRangePopup({ coreState }, ref) {
+function PriceRangePopup(
+  { coreState }: FilterPopupProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
   const router = useRouter();
   const [priceRange, setPriceRange] = useState({
@@ -16,7 +20,7 @@ function PriceRangePopup({ coreState }, ref) {
     maxPrice: router.query['price_lte'] || 50000,
   });
 
-  const handlePriceRangeChange = (e) => {
+  const handlePriceRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.name;
     const nextValue = +e.target.value;
     setPriceRange({

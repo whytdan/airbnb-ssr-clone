@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
-import { Button, Checkbox, FormControl, TextField } from '@material-ui/core';
+import { Checkbox, FormControl, TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -27,7 +28,6 @@ export async function getStaticProps() {
     },
   };
 }
-
 interface ICategoryOption {
   id: number;
   label: string;

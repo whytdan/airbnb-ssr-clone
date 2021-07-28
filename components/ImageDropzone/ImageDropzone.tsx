@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DropzoneDialogBase } from 'material-ui-dropzone';
+import { DropzoneDialogBase, FileObject } from 'material-ui-dropzone';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Typography, makeStyles, IconButton } from '@material-ui/core';
@@ -16,12 +16,7 @@ interface ImageDropzoneProps {
   name: string;
   setFieldValue(name: string, value: any): void;
   buttonText: string;
-  formikImages:
-    | Array<{
-        data: string;
-        file: File;
-      }>
-    | [];
+  formikImages: Array<FileObject> | [];
 }
 
 export default function ImageDropzone({
@@ -35,7 +30,7 @@ export default function ImageDropzone({
 
   const classes = useStyles();
 
-  const onFileDelete = (deleteFileObj) => {
+  const onFileDelete = (deleteFileObj: FileObject) => {
     const filteredFileObjects = fileObjects.filter(
       (fileObj) => fileObj.data !== deleteFileObj.data
     );
@@ -62,7 +57,7 @@ export default function ImageDropzone({
         open={open}
         onAdd={(newFileObjs) => {
           console.log('onAdd', newFileObjs);
-          setFileObjects([].concat(fileObjects, newFileObjs));
+          setFileObjects([...fileObjects, ...newFileObjs]);
         }}
         onDelete={(deleteFileObj) => {
           console.log('onDelete', deleteFileObj);

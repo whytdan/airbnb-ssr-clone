@@ -41,8 +41,8 @@ function FiltrationArea() {
     flexibleCancellation: !!router.query.flexibleCancellation,
     housingType: !!router.query['housingType_like'],
     price:
-      (+router.query['price_lte'] !== 50000 && !!router.query['price_lte']) ||
-      (+router.query['price_gte'] !== 0 && !!router.query['price_gte']),
+      (+router.query['price_lte']! !== 50000 && !!router.query['price_lte']) ||
+      (+router.query['price_gte']! !== 0 && !!router.query['price_gte']),
     instanceBooking: !!router.query.instanceBooking,
   });
 
@@ -50,7 +50,7 @@ function FiltrationArea() {
 
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
-  const filterPopupRef = useRef<HTMLDivElement>();
+  const filterPopupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     console.log(query);
@@ -86,7 +86,7 @@ function FiltrationArea() {
   // * Hook that calls callback, if user clicks outside of the passed ref
   useOutsideClick(filterPopupRef, hideFilterPopups);
 
-  const handleFilterPopupOpen = (filterName) => {
+  const handleFilterPopupOpen = (filterName: string) => {
     setFiltersPopupIsOpen({
       ...filtersPopupIsOpen,
       [filterName]: true,

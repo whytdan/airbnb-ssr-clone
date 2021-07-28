@@ -24,10 +24,11 @@ import {
 import { RootState } from '../../redux/reducers';
 import { IHomeObject } from '../../api/interfaces';
 import { useVoidDispatch } from '../../hooks/useVoidDispatch';
+import { GetServerSideProps } from 'next';
 
-export async function getServerSideProps(ctx) {
-  const homes: IHomeObject[] = await fetchHomesByCategory(ctx.query);
-  const categoryTitle: string = await getCategoryTitle(ctx.params.slug);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const homes: IHomeObject[] = await fetchHomesByCategory(context.query);
+  const categoryTitle: string = await getCategoryTitle(context.query.slug)!;
 
   return {
     props: {
@@ -35,7 +36,7 @@ export async function getServerSideProps(ctx) {
       categoryTitle,
     },
   };
-}
+};
 
 interface CategoryHomesProps {
   homes: IHomeObject[];
@@ -81,14 +82,19 @@ export default function CategoryHomes({
   }, [pageNumber, query]);
 
   useEffect(() => {
-    return () => voidDispatch(clearHomes());
+    return () => {
+      dispatch(clearHomes());
+    };
   }, []);
 
   const observer = useRef(null);
   const lastHomeElementRef = useCallback(
     (node: ReactNode) => {
       if (loading) return;
-      if (observer.current) observer.current.disconnect();
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);

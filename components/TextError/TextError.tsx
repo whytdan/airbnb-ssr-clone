@@ -1,5 +1,6 @@
 import React from 'react';
 
+// @ts-ignore
 function TextError(props) {
   return (
     <small

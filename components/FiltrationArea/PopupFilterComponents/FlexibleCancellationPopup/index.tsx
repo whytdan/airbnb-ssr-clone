@@ -1,8 +1,8 @@
-import { FilterPopupProps } from '../../interfaces';
+import { FilterPopupWrapperProps } from '../../interfaces';
 import FlexibleCancellationPopup from './FlexibleCancellationPopup';
 
 export default function WrappedFlexibleCancellationPopup(
-  props: FilterPopupProps
+  props: FilterPopupWrapperProps
 ) {
   return (
     <FlexibleCancellationPopup

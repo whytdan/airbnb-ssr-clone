@@ -1,7 +1,9 @@
-import { FilterPopupProps } from '../../interfaces';
+import { FilterPopupWrapperProps } from '../../interfaces';
 import InstanceBookingPopup from './InstanceBookingPopup';
 
-export default function WrappedInstanceBookingPopup(props: FilterPopupProps) {
+export default function WrappedInstanceBookingPopup(
+  props: FilterPopupWrapperProps
+) {
   return (
     <InstanceBookingPopup
       coreState={props.coreState}

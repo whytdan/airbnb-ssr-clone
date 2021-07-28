@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { ForwardedRef, useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
 import classes from '../../FiltrationArea.module.scss';
 import { useRouter } from 'next/router';
+import { FilterPopupProps } from '../../interfaces';
 
-function convertToBoolean(input: string): boolean | undefined {
+function convertToBoolean(input: string): boolean {
   try {
     return JSON.parse(input);
   } catch (e) {
-    return undefined;
+    return false;
   }
 }
 
-function FlexibleCancellationPopup({ coreState }, ref) {
+function FlexibleCancellationPopup(
+  { coreState }: FilterPopupProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
 
   const router = useRouter();

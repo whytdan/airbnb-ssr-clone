@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-export default function useOutsideClick(ref, callback) {
+export default function useOutsideClick(
+  ref: RefObject<HTMLDivElement>,
+  callback: VoidFunction
+) {
   useEffect(() => {
     /**
      * Hook that calls callback, if user clicks outside of the passed ref
      */
     function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         callback();
       }
     }

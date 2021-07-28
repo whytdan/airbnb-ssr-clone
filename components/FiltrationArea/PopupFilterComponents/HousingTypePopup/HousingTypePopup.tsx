@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { ForwardedRef, SyntheticEvent, useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import { housingTypeOptions } from '../../constants';
@@ -9,8 +9,12 @@ import {
   isHousingTypeStateSetToDefault,
 } from './helpers';
 import { IhousingTypeState } from './interfaces';
+import { FilterPopupProps } from '../../interfaces';
 
-function HousingTypePopup({ coreState }, ref) {
+function HousingTypePopup(
+  { coreState }: FilterPopupProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
   const router = useRouter();
   const [housingTypeState, setHousingTypeState] = useState<IhousingTypeState>({
@@ -53,7 +57,9 @@ function HousingTypePopup({ coreState }, ref) {
           name: 'housingType_like',
           value: nextFilterBoolVal
             ? [...prevHousingTypes, housingTypeName]
-            : prevHousingTypes.filter((name) => name !== housingTypeName),
+            : prevHousingTypes.filter(
+                (name: string) => name !== housingTypeName
+              ),
         };
         setQuery(nextQueryState);
       } else {

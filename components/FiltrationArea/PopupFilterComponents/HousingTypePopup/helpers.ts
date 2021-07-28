@@ -1,6 +1,10 @@
+import { NextRouter } from 'next/router';
 import { IhousingTypeState } from './interfaces';
 
-export const calculateInitialHouseType = (router, houseType) => {
+export const calculateInitialHouseType = (
+  router: NextRouter,
+  houseType: string
+) => {
   const queryParamValue = router.query['housingType_like'];
   if (queryParamValue) {
     return typeof queryParamValue === 'string'
@@ -11,4 +15,4 @@ export const calculateInitialHouseType = (router, houseType) => {
 };
 
 export const isHousingTypeStateSetToDefault = (state: IhousingTypeState) =>
-  !Object.values(state).reduce((a, v) => a + v);
+  !Object.values(state).reduce((a, v) => a || v);

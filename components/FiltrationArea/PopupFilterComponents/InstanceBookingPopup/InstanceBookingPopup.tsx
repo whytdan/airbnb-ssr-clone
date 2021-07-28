@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { ForwardedRef, useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
 import classes from '../../FiltrationArea.module.scss';
 import { useRouter } from 'next/router';
+import { FilterPopupProps } from '../../interfaces';
 
-function InstanceBookingPopup({ coreState }, ref) {
+function InstanceBookingPopup(
+  { coreState }: FilterPopupProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const { setFiltersTouched, filtersTouched, query, setQuery } = coreState;
 
   const router = useRouter();
