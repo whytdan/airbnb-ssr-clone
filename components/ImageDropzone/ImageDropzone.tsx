@@ -32,7 +32,7 @@ export default function ImageDropzone({
 
   const onFileDelete = (deleteFileObj: FileObject) => {
     const filteredFileObjects = fileObjects.filter(
-      (fileObj) => fileObj.data !== deleteFileObj.data
+      (fileObj: FileObject) => fileObj.data !== deleteFileObj.data
     );
     setFileObjects(filteredFileObjects);
     setFieldValue(name, filteredFileObjects);

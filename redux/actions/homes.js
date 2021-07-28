@@ -31,8 +31,9 @@ const fetchHomesLoading = () => {
 const CancelToken = axios.CancelToken;
 let cancel;
 
-export const fetchHomes = (query, pageNumber = 1) => {
-  return async (dispatch) => {
+export const fetchHomes =
+  (query, pageNumber = 1) =>
+  async (dispatch) => {
     dispatch(fetchHomesLoading());
     try {
       const apiUrl = `${CONFIG.API_URL}/homes`;
@@ -61,7 +62,6 @@ export const fetchHomes = (query, pageNumber = 1) => {
       }
     }
   };
-};
 
 export const clearHomes = () => ({
   type: CLEAR_HOMES,

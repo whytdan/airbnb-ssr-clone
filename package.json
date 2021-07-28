@@ -6,7 +6,7 @@
     "test": "jest",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
     "server": "json-server --watch db.json --port 8000",
     "export": "npm run build && next export -o _static"
