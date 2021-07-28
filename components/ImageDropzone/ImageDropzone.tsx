@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
 
 interface ImageDropzoneProps {
   name: string;
-  setFieldValue(name: string, value: any): void;
+  setFieldValue(_name: string, _value: any): void;
   buttonText: string;
   formikImages: Array<FileObject> | [];
 }
@@ -65,7 +65,7 @@ export default function ImageDropzone({
           onFileDelete(deleteFileObj);
         }}
         onClose={() => setOpen(false)}
-        onSave={(e) => {
+        onSave={() => {
           setFieldValue(name, fileObjects);
           setOpen(false);
         }}

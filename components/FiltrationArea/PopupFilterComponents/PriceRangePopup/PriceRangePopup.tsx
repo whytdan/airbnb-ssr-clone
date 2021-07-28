@@ -20,7 +20,7 @@ function PriceRangePopup(
     maxPrice: router.query['price_lte'] || 50000,
   });
 
-  const handlePriceRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.name;
     const nextValue = +e.target.value;
     setPriceRange({

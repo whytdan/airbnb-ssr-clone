@@ -5,7 +5,7 @@ import HomeCard from '../HomeCard';
 
 interface HomeListProps {
   homes: IHomeObject[];
-  lastHomeElementRef(node: ReactNode): void;
+  lastHomeElementRef(_node: ReactNode): void;
   loading: boolean;
   error: boolean;
 }

@@ -23,7 +23,6 @@ import {
 } from '../../redux/actions/homes';
 import { RootState } from '../../redux/reducers';
 import { IHomeObject } from '../../api/interfaces';
-import { useVoidDispatch } from '../../hooks/useVoidDispatch';
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -53,7 +52,6 @@ export default function CategoryHomes({
   const [prevQueryObjectLink, setPrevQueryObjectLink] = useState(query);
 
   const dispatch = useDispatch();
-  const voidDispatch = useVoidDispatch();
   const { loading, error, homes, hasMore } = useSelector(
     (state: RootState) => state.homes
   );

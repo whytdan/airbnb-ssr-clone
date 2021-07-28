@@ -23,6 +23,7 @@ function HomeCard({ data }: HomeCardProps, ref: ForwardedRef<HTMLDivElement>) {
               width={300}
               height={200}
               objectFit="cover"
+              alt={data.title}
             />
           ))}
         </Slider>

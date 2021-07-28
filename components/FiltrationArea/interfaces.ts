@@ -20,9 +20,9 @@ export interface IFiltrationAreaQueryParam {
 }
 
 export interface IFiltrationAreaCore {
-  setFiltersTouched(nextState: IFiltersPopupIsTouched): void;
+  setFiltersTouched(_nextState: IFiltersPopupIsTouched): void;
   filtersTouched: IFiltersPopupIsTouched;
-  setQuery(nexState: IFiltrationAreaQueryParam[]): void;
+  setQuery(_nexState: IFiltrationAreaQueryParam[]): void;
   query: IFiltrationAreaQueryParam[];
 }
 
